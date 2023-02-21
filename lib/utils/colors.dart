@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color kPrimaryColor = Colors.redAccent;
+const Color kPrimaryColor = Colors.yellow;
 const Color kLightPrimaryColor = Colors.redAccent;
 
 const Color kSecondaryColor = Colors.redAccent;
@@ -12,3 +12,8 @@ const Color kBlackColor = Colors.black;
 const Color kHintColor = Colors.black38;
 
 const Color kErrorColor = Colors.redAccent;
+
+// Dark Theme Color
+const Color kDarkGreyColor = Color(0xFF121212);
+const Color kDarkGrey1Color = Color(0xFF1F1A24);
+const Color kDarkGrey2Color = Color(0xFF332940);

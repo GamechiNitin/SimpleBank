@@ -1,7 +1,14 @@
 import 'package:simple_bank/utils/import.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  bool prefThemeValue = await ThemePreference.getTheme();
+  runApp(
+    BlocProvider<DarkModeCubit>(
+      create: (context) => DarkModeCubit()..changeTheme(prefThemeValue),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -9,13 +16,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Simple Bank',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+    return BlocBuilder<DarkModeCubit, DarkModeInitialState>(
+      builder: (context, state) {
+        return MaterialApp(
+          title: 'Simple Bank',
+          themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          darkTheme: AppTheme.darkTheme,
+          theme: AppTheme.lightTheme,
+          debugShowCheckedModeBanner: false,
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }

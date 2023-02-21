@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/bnb/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> initTimer() async {
-    Timer(const Duration(seconds: 2), gotoHomeScreen);
+    Timer(const Duration(seconds: 2), gotoHome);
   }
 
   void gotoHomeScreen() {
@@ -25,6 +26,15 @@ class _SplashScreenState extends State<SplashScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => const HomeScreen(),
+      ),
+      (route) => false,
+    );
+  }
+  void gotoHome() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Home(),
       ),
       (route) => false,
     );
@@ -37,8 +47,8 @@ class _SplashScreenState extends State<SplashScreen> {
         child: RichText(
           text: TextSpan(
             text: "Simple",
-            style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                       style: Theme.of(context).appBarTheme.titleTextStyle,
+
             children: [
               TextSpan(
                 text: "Bank",
