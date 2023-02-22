@@ -6,7 +6,7 @@ export 'package:simple_bank/view/splash_screen.dart';
 
 // Home - BNB
 export 'package:simple_bank/view/screen/bnb/market_screen.dart';
-export 'package:simple_bank/view/screen/bnb/menu_screen.dart';
+export 'package:simple_bank/view/screen/bnb/dashboard_screen.dart';
 export 'package:simple_bank/view/screen/bnb/home_screen.dart';
 // Home - BNB - Componenr
 export 'package:simple_bank/view/screen/bnb/component/watchlist_component.dart';

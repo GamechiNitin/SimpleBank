@@ -21,11 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         title: RichText(
           text: TextSpan(
-            text: "Simple",
+            text: "Digital",
             style: Theme.of(context).appBarTheme.titleTextStyle,
             children: [
               TextSpan(
-                text: "Bank",
+                text: "Money",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,

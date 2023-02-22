@@ -30,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       (route) => false,
     );
   }
+
   void gotoHome() {
     Navigator.pushAndRemoveUntil(
       context,
@@ -46,12 +47,11 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: RichText(
           text: TextSpan(
-            text: "Simple",
-                       style: Theme.of(context).appBarTheme.titleTextStyle,
-
+            text: "Digital",
+            style: Theme.of(context).appBarTheme.titleTextStyle,
             children: [
               TextSpan(
-                text: "Bank",
+                text: "Money",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,

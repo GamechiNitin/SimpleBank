@@ -16,6 +16,6 @@ const double size26 = 26.0;
 const double size28 = 28.0;
 const double size30 = 30.0;
 
+const double kSmallIconSize = 16.0;
 const double kIconSize = 25.0;
 const double kAppBarIconSize = 22.0;
-

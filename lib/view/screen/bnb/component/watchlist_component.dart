@@ -34,7 +34,8 @@ class WatchlistComponent extends StatelessWidget {
               shortName.substring(0, 1),
               style: const TextStyle(
                 fontSize: size18,
-                color: kBlackColor,
+                color: kBlackColor
+                ,
               ),
             ),
           ),

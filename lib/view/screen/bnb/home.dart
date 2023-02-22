@@ -36,7 +36,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         children: const [
           HomeScreen(),
           MarketScreen(),
-          MenuScreen(),
+          DashboardScreen(),
         ],
       ),
       bottomNavigationBar: Container(
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               currentIndex: currentIndex == 1,
             ),
             BottomNavIconWidget(
-              label: "Menu",
+              label: "Dashboard",
               icon: Icons.menu,
               currentIndex: currentIndex == 2,
             ),
