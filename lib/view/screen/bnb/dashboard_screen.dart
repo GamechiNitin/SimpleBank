@@ -221,9 +221,9 @@ class MyWidget2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: kDarkGrey2Color,
+        color: Theme.of(context).colorScheme.background,
         border: Border(
           bottom: BorderSide(
             color: kBlackColor,

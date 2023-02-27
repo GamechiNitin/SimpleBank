@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_bank/utils/import.dart';
 
 class AppTheme {
@@ -18,9 +19,9 @@ class AppTheme {
         ),
       ),
       // brightness: Brightness.dark,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: kWhiteColor,
-        titleTextStyle: TextStyle(
+        titleTextStyle: GoogleFonts.poppins(
           color: kBlackColor,
           fontSize: 16,
           fontWeight: FontWeight.w500,
@@ -43,13 +44,13 @@ class AppTheme {
         surface: kPrimaryColor,
         onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
       ),
-      textTheme: const TextTheme(
-        bodyMedium: TextStyle(
+      textTheme: TextTheme(
+        bodyMedium: GoogleFonts.notoSerif(
           fontSize: size12,
           color: kBlackColor,
           // height: 0,
         ),
-        bodySmall: TextStyle(
+        bodySmall: GoogleFonts.notoSerif(
           fontSize: size8,
           color: kBlackColor,
         ),
@@ -71,15 +72,15 @@ class AppTheme {
       onSecondary: kPrimaryColor,
       error: kPrimaryColor,
       onError: kPrimaryColor,
-      background: kPrimaryColor,
+      background: kDarkGrey2Color,
       onBackground: kPrimaryColor,
       surface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
       onSurface: kPrimaryColor,
     ),
     useMaterial3: true,
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       backgroundColor: kDarkGreyColor,
-      titleTextStyle: TextStyle(
+      titleTextStyle: GoogleFonts.poppins(
         color: kWhiteColor,
         fontSize: 16,
         fontWeight: FontWeight.w500,
@@ -101,13 +102,13 @@ class AppTheme {
       ),
     ),
     // Text Theme
-    textTheme: const TextTheme(
-      bodyMedium: TextStyle(
+    textTheme: TextTheme(
+      bodyMedium: GoogleFonts.notoSerif(
         fontSize: size12,
         color: kWhiteColor,
         // height: 0,
       ),
-      bodySmall: TextStyle(
+      bodySmall: GoogleFonts.notoSerif(
         fontSize: size8,
         color: kWhiteColor,
       ),
