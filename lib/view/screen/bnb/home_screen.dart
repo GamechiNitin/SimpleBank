@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         title: RichText(
           text: TextSpan(
             text: "Digital",
@@ -35,22 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        actions: [
-          BlocBuilder<DarkModeCubit, DarkModeInitialState>(
-            builder: (context, state) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: Switch(
-                  value: state.isDarkMode,
-                  onChanged: (onChanged) {
-                    BlocProvider.of<DarkModeCubit>(context)
-                        .changeTheme(onChanged);
-                  },
-                ),
-              );
-            },
-          ),
-        ],
       ),
       body: ListView.builder(
         itemCount: watchList.length,

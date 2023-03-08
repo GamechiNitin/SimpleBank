@@ -96,10 +96,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                MyWidget(
-                  text: "Dark Mode",
-                  icon: Icons.language,
-                  onTap: () {},
+                BlocBuilder<DarkModeCubit, DarkModeInitialState>(
+                  builder: (context, state) {
+                    return MyWidget(
+                      text: state.isDarkMode ? "Light Mode" : "Dark Mode",
+                      icon: Icons.language,
+                      onTap: () {
+                        bool isDark = state.isDarkMode;
+                        isDark = !isDark;
+                        BlocProvider.of<DarkModeCubit>(context)
+                            .changeTheme(isDark);
+                      },
+                    );
+                  },
                 ),
                 MyWidget(
                   text: "Rate App",
@@ -184,29 +193,32 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(bottom: 4),
-          padding: const EdgeInsets.all(6),
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: kDarkGrey2Color,
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 4),
+            padding: const EdgeInsets.all(6),
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: kDarkGrey2Color,
+            ),
+            child: Icon(
+              icon,
+              size: 30,
+              color: kWhiteColor,
+            ),
           ),
-          child: Icon(
-            icon,
-            size: 30,
-            color: kWhiteColor,
-          ),
-        ),
-        Text(
-          text,
-          style: Theme.of(context).textTheme.bodySmall,
-        )
-      ],
+          Text(
+            text,
+            style: Theme.of(context).textTheme.bodySmall,
+          )
+        ],
+      ),
     );
   }
 }
@@ -224,7 +236,7 @@ class MyWidget2 extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: Theme.of(context).colorScheme.background,
-        border: Border(
+        border: const Border(
           bottom: BorderSide(
             color: kBlackColor,
             width: 0.2,

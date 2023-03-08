@@ -44,3 +44,4 @@ app.*.map.json
 /android/app/release
 pubspec.lock
 macos/Flutter/GeneratedPluginRegistrant.swift
+lib/view/screen/bnb/dashboard_screen.dart
