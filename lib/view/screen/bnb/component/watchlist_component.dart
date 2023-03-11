@@ -5,9 +5,11 @@ class WatchlistComponent extends StatelessWidget {
     super.key,
     required this.shortName,
     required this.bankName,
+    required this.type,
   });
   final String shortName;
   final String bankName;
+  final String type;
 
   @override
   Widget build(BuildContext context) {
@@ -34,20 +36,36 @@ class WatchlistComponent extends StatelessWidget {
               shortName.substring(0, 1),
               style: const TextStyle(
                 fontSize: size18,
-                color: kBlackColor
-                ,
+                color: kBlackColor,
               ),
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                shortName,
-                style: Theme.of(context)
-                    .appBarTheme
-                    .titleTextStyle
-                    ?.copyWith(fontSize: size12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "$type : ",
+                    style:
+                        Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
+                              fontSize: size12,
+                              color: type == "Bank"
+                                  ? kPrimaryColor
+                                  : type != "ALL"
+                                      ? kBlueColor
+                                      : kLightPrimaryColor,
+                            ),
+                  ),
+                  Text(
+                    shortName,
+                    style:
+                        Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
+                              fontSize: size12,
+                            ),
+                  ),
+                ],
               ),
               Text(
                 bankName,

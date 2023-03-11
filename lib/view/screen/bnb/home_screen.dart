@@ -9,10 +9,41 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<WatchlistModel> watchList = [
-    WatchlistModel(bankName: "State Bank of India", shortBankName: "SBI"),
-    WatchlistModel(bankName: "Bank of Baroda", shortBankName: "BOB"),
     WatchlistModel(
-        bankName: "Union Bank of India", shortBankName: "Union Bank"),
+      bankName: "List of all the Bank",
+      shortBankName: "All Bank",
+      type: "ALL",
+    ),
+    WatchlistModel(
+      bankName: "Upstox - Stock Trading App",
+      shortBankName: "Upstox",
+      type: "Stock Trading App",
+    ),
+    WatchlistModel(
+      bankName: "State Bank of India",
+      shortBankName: "SBI",
+      type: "Bank",
+    ),
+    WatchlistModel(
+      bankName: "Zerodha - Stock Trading App",
+      shortBankName: "Zerodha",
+      type: "Stock Trading App",
+    ),
+    WatchlistModel(
+      bankName: "State Bank of Gujarat",
+      shortBankName: "SBG",
+      type: "Bank",
+    ),
+    WatchlistModel(
+      bankName: "Bank of Baroda",
+      shortBankName: "BOB",
+      type: "Bank",
+    ),
+    WatchlistModel(
+      bankName: "Union Bank of India",
+      shortBankName: "Union Bank",
+      type: "Bank",
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -44,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return WatchlistComponent(
             shortName: watchList[index].shortBankName ?? "",
             bankName: watchList[index].bankName ?? "",
+            type: watchList[index].type ?? "",
           );
         },
       ),

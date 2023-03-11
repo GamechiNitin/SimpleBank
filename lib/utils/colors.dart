@@ -13,6 +13,7 @@ const Color kHintColor = Colors.black38;
 
 const Color kErrorColor = Colors.redAccent;
 const Color kBlueAccentColor = Colors.blueAccent;
+const Color kBlueColor = Colors.blue;
 
 // Dark Theme Color
 const Color kDarkGreyColor = Color(0xFF121212);

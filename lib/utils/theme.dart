@@ -20,6 +20,7 @@ class AppTheme {
       ),
       // brightness: Brightness.dark,
       appBarTheme: AppBarTheme(
+        titleSpacing: 0,
         backgroundColor: kWhiteColor,
         titleTextStyle: GoogleFonts.poppins(
           color: kBlackColor,
@@ -79,6 +80,7 @@ class AppTheme {
     ),
     useMaterial3: true,
     appBarTheme: AppBarTheme(
+      titleSpacing: 0,
       backgroundColor: kDarkGreyColor,
       titleTextStyle: GoogleFonts.poppins(
         color: kWhiteColor,
@@ -103,15 +105,8 @@ class AppTheme {
     ),
     // Text Theme
     textTheme: TextTheme(
-      bodyMedium: GoogleFonts.notoSerif(
-        fontSize: size12,
-        color: kWhiteColor,
-        // height: 0,
-      ),
-      bodySmall: GoogleFonts.notoSerif(
-        fontSize: size8,
-        color: kWhiteColor,
-      ),
+      bodyMedium: GoogleFonts.poppins(color: kWhiteColor),
+      bodySmall: GoogleFonts.notoSerif(color: kWhiteColor),
     ),
   );
 }

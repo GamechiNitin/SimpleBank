@@ -1,4 +1,6 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/more/about_page.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -128,7 +130,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 MyWidget(
                   text: "About",
                   icon: Icons.language,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AboutPage(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -263,7 +271,13 @@ class MyWidget2 extends StatelessWidget {
           ),
           Text(
             text,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontFamily: GoogleFonts.notoSerif.toString(),
+                ),
+          ),
+          Text(
+            text,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),
