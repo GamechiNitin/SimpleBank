@@ -20,7 +20,6 @@ class AppTheme {
       ),
       // brightness: Brightness.dark,
       appBarTheme: AppBarTheme(
-        titleSpacing: 0,
         backgroundColor: kWhiteColor,
         titleTextStyle: GoogleFonts.poppins(
           color: kBlackColor,
@@ -43,21 +42,16 @@ class AppTheme {
         background: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
         onBackground: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
         surface: kPrimaryColor,
-        onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
+        onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
       ),
       textTheme: TextTheme(
-        bodyMedium: GoogleFonts.notoSerif(
-          fontSize: size12,
+        bodyMedium: GoogleFonts.poppins(
           color: kBlackColor,
-          // height: 0,
         ),
         bodySmall: GoogleFonts.notoSerif(
-          fontSize: size8,
           color: kBlackColor,
         ),
-      )
-      // colorSchemeSeed: kPrimaryColor,
-      );
+      ));
 
   // Dark Theme
   static ThemeData darkTheme = ThemeData(
@@ -80,7 +74,7 @@ class AppTheme {
     ),
     useMaterial3: true,
     appBarTheme: AppBarTheme(
-      titleSpacing: 0,
+      // titleSpacing: 0,
       backgroundColor: kDarkGreyColor,
       titleTextStyle: GoogleFonts.poppins(
         color: kWhiteColor,

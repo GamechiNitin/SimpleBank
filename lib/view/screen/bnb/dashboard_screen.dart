@@ -1,6 +1,4 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/more/about_page.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -100,7 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 BlocBuilder<DarkModeCubit, DarkModeInitialState>(
                   builder: (context, state) {
-                    return MyWidget(
+                    return QuickIconWidget(
                       text: state.isDarkMode ? "Light Mode" : "Dark Mode",
                       icon: Icons.language,
                       onTap: () {
@@ -112,28 +110,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     );
                   },
                 ),
-                MyWidget(
+                QuickIconWidget(
                   text: "Rate App",
                   icon: Icons.star,
                   onTap: () {},
                 ),
-                MyWidget(
+                QuickIconWidget(
                   text: "Feedback",
                   icon: Icons.email,
                   onTap: () {},
                 ),
-                MyWidget(
+                QuickIconWidget(
                   text: "T&C",
                   icon: Icons.import_contacts,
                   onTap: () {},
                 ),
-                MyWidget(
+                QuickIconWidget(
                   text: "About",
                   icon: Icons.language,
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const AboutPage(),
+                        builder: (context) => const AboutUsScreen(),
                       ),
                     );
                   },
@@ -149,27 +147,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
               style: Theme.of(context).appBarTheme.titleTextStyle,
             ),
           ),
-          MyWidget2(
+          QuickIconTileWidget(
             text: "Check update",
             icon: Icons.update,
             onTap: () {},
           ),
-          MyWidget2(
+          QuickIconTileWidget(
             text: "Release notes",
             icon: Icons.store,
             onTap: () {},
           ),
-          MyWidget2(
+          QuickIconTileWidget(
             text: "Version 1.0",
             icon: Icons.android_outlined,
             onTap: () {},
           ),
-          MyWidget2(
+          QuickIconTileWidget(
             text: "Delete Account",
             icon: Icons.account_balance,
             onTap: () {},
           ),
-          MyWidget2(
+          QuickIconTileWidget(
             text: "Logout",
             icon: Icons.logout,
             onTap: () {},
@@ -181,103 +179,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({
-    super.key,
-    required this.text,
-    required this.icon,
-    required this.onTap,
-  });
-  final String text;
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 4),
-            padding: const EdgeInsets.all(6),
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: kDarkGrey2Color,
-            ),
-            child: Icon(
-              icon,
-              size: 30,
-              color: kWhiteColor,
-            ),
-          ),
-          Text(
-            text,
-            style: Theme.of(context).textTheme.bodySmall,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class MyWidget2 extends StatelessWidget {
-  const MyWidget2(
-      {super.key, required this.text, required this.icon, required this.onTap});
-  final String text;
-  final IconData icon;
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        color: Theme.of(context).colorScheme.background,
-        border: const Border(
-          bottom: BorderSide(
-            color: kBlackColor,
-            width: 0.2,
-          ),
-        ),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(right: 8),
-            padding: const EdgeInsets.all(6),
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: kDarkGreyColor,
-            ),
-            child: Icon(
-              icon,
-              // size: 30,
-              color: kWhiteColor,
-            ),
-          ),
-          Text(
-            text,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontFamily: GoogleFonts.notoSerif.toString(),
-                ),
-          ),
-          Text(
-            text,
-            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),
