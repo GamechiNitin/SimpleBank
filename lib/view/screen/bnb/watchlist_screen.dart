@@ -1,4 +1,5 @@
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/bnb/component/grid_card_component.dart';
 import 'package:simple_bank/view/screen/bnb/component/slider_component.dart';
 
 class WatchListScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
           ),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           SizedBox(
             height: 220,
@@ -66,7 +67,54 @@ class _WatchListScreenState extends State<WatchListScreen> {
               ],
             ),
           ),
-          const SizedBox()
+          const Padding(
+            padding: EdgeInsets.only(left: 20, top: 20),
+            child: Text("Create Watchlist for :"),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: const [
+                Expanded(
+                  child: GridCardComponent(
+                    one: "For",
+                    two: "Yourself",
+                    icon: Icons.person,
+                  ),
+                ),
+                SizedBox(width: 20),
+                Expanded(
+                  child: GridCardComponent(
+                    one: "For",
+                    two: "Family",
+                    icon: Icons.group,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              children: const [
+                Expanded(
+                  child: GridCardComponent(
+                    one: "For",
+                    two: "Organization",
+                    icon: Icons.home_work_outlined,
+                  ),
+                ),
+                SizedBox(width: 20),
+                Expanded(
+                  child: GridCardComponent(
+                    one: "For",
+                    two: "Business",
+                    icon: Icons.business_outlined,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
