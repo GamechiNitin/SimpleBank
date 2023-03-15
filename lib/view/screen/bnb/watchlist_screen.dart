@@ -67,9 +67,16 @@ class _WatchListScreenState extends State<WatchListScreen> {
               ],
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 20, top: 20),
-            child: Text("Create Watchlist for :"),
+            child: Text(
+              "Create Watchlist ",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    fontSize: 16,
+                  ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(20),

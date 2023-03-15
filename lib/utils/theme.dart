@@ -3,55 +3,56 @@ import 'package:simple_bank/utils/import.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: kWhiteColor,
-        selectedIconTheme: IconThemeData(color: kBlackColor),
-        unselectedIconTheme: IconThemeData(color: kBlackColor),
-        selectedLabelStyle: TextStyle(
-          color: kBlackColor,
-          fontSize: size8,
-          letterSpacing: 0.2,
-        ),
-        unselectedLabelStyle: TextStyle(
-          color: kBlackColor,
-          fontSize: size8,
-          letterSpacing: 0.2,
-        ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: kWhiteColor,
+      selectedIconTheme: IconThemeData(color: kBlackColor),
+      unselectedIconTheme: IconThemeData(color: kBlackColor),
+      selectedLabelStyle: TextStyle(
+        color: kBlackColor,
+        fontSize: size8,
+        letterSpacing: 0.2,
       ),
-      // brightness: Brightness.dark,
-      appBarTheme: AppBarTheme(
-        backgroundColor: kWhiteColor,
-        titleTextStyle: GoogleFonts.poppins(
-          color: kBlackColor,
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
+      unselectedLabelStyle: TextStyle(
+        color: kBlackColor,
+        fontSize: size8,
+        letterSpacing: 0.2,
       ),
-      useMaterial3: true,
-      primaryColor: kPrimaryColor,
-      scaffoldBackgroundColor:
-          ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
-      colorScheme: ColorScheme(
-        brightness: Brightness.light,
-        primary: kWhiteColor,
-        onPrimary: kWhiteColor,
-        secondary: kWhiteColor,
-        onSecondary: kWhiteColor,
-        error: kBlackColor,
-        onError: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
-        background: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
-        onBackground: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
-        surface: kPrimaryColor,
-        onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
+    ),
+    // brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(
+      backgroundColor: kWhiteColor,
+      titleTextStyle: GoogleFonts.poppins(
+        color: kBlackColor,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
       ),
-      textTheme: TextTheme(
-        bodyMedium: GoogleFonts.poppins(
-          color: kBlackColor,
-        ),
-        bodySmall: GoogleFonts.notoSerif(
-          color: kBlackColor,
-        ),
-      ));
+    ),
+    useMaterial3: true,
+    primaryColor: kPrimaryColor,
+    scaffoldBackgroundColor:
+        ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
+    colorScheme: ColorScheme(
+      brightness: Brightness.light,
+      primary: kWhiteColor,
+      onPrimary: kWhiteColor,
+      secondary: kWhiteColor,
+      onSecondary: kWhiteColor,
+      error: kBlackColor,
+      onError: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
+      background: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
+      onBackground: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
+      surface: kPrimaryColor,
+      onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
+    ),
+    textTheme: TextTheme(
+      bodyMedium: GoogleFonts.poppins(
+        color: kBlackColor,
+      ),
+      bodySmall: GoogleFonts.notoSerif(
+        color: kBlackColor,
+      ),
+    ),
+  );
 
   // Dark Theme
   static ThemeData darkTheme = ThemeData(
