@@ -1,10 +1,26 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:simple_bank/cubit/theme_cubit/dark_mode_cubit.dart';
 import 'package:simple_bank/utils/colors.dart';
 
 class CustomDecoration {
+  static InputBorder kSearchInputBorder = const OutlineInputBorder(
+    borderSide: BorderSide(
+      color: kWhiteColor,
+      width: 1.5,
+    ),
+  );
+  static InputBorder kInputBorder = OutlineInputBorder(
+    borderSide: BorderSide(
+      color: kLPrimaryColor,
+      width: 1.5,
+    ),
+  );
+  static InputBorder kErrorInputBorder = const OutlineInputBorder(
+    borderSide: BorderSide(
+      color: kErrorColor,
+      width: 1.5,
+    ),
+  );
+
   static Decoration watchDarkDeocoration = BoxDecoration(
     color: kDarkGrey1Color,
     borderRadius: BorderRadius.circular(10),

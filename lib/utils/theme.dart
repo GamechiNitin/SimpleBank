@@ -44,6 +44,8 @@ class AppTheme {
       surface: kPrimaryColor,
       onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
     ),
+
+    inputDecorationTheme: InputDecorationTheme(),
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.poppins(
         color: kBlackColor,
