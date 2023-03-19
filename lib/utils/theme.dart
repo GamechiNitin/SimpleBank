@@ -18,6 +18,7 @@ class AppTheme {
         letterSpacing: 0.2,
       ),
     ),
+
     // brightness: Brightness.dark,
     appBarTheme: AppBarTheme(
       backgroundColor: kWhiteColor,
@@ -29,6 +30,7 @@ class AppTheme {
     ),
     useMaterial3: true,
     primaryColor: kPrimaryColor,
+
     scaffoldBackgroundColor:
         ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
     colorScheme: ColorScheme(
@@ -45,7 +47,12 @@ class AppTheme {
       onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
     ),
 
-    inputDecorationTheme: InputDecorationTheme(),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: const TextStyle(
+        fontSize: 14,
+        color: kHintColor,
+      ),
+    ),
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.poppins(
         color: kBlackColor,
@@ -70,7 +77,7 @@ class AppTheme {
       onSecondary: kPrimaryColor,
       error: kPrimaryColor,
       onError: kPrimaryColor,
-      background: kDarkGrey2Color,
+      background: kDarkGrey1Color,
       onBackground: kPrimaryColor,
       surface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
       onSurface: kPrimaryColor,
@@ -100,7 +107,12 @@ class AppTheme {
         letterSpacing: 0.2,
       ),
     ),
-    // Text Theme
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: const TextStyle(
+        fontSize: 12,
+        color: kWhiteColor,
+      ),
+    ), // Text Theme
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.poppins(color: kWhiteColor),
       bodySmall: GoogleFonts.notoSerif(color: kWhiteColor),

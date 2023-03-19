@@ -38,10 +38,6 @@ class TextFormWidget extends StatelessWidget {
       obscureText: obscureText != null ? obscureText! : false,
       decoration: InputDecoration(
         hintText: label,
-        hintStyle: const TextStyle(
-          fontSize: 14,
-          color: kHintColor,
-        ),
         prefixIcon: prefixIcon == null
             ? null
             : Container(
@@ -57,7 +53,7 @@ class TextFormWidget extends StatelessWidget {
                   prefixIcon,
                   // Icons.search,
                   size: 20,
-                  color: kWhiteColor,
+                  color: Theme.of(context).textTheme.bodySmall?.color,
                 ),
               ),
         suffixIcon: suffixIcon == null
@@ -69,7 +65,7 @@ class TextFormWidget extends StatelessWidget {
                   child: Icon(
                     suffixIcon,
                     size: 20,
-                    color: kBlackColor,
+                    color: Theme.of(context).textTheme.bodySmall?.color,
                   ),
                 ),
               ),

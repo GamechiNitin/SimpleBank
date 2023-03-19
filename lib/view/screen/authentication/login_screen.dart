@@ -101,17 +101,20 @@ class _LogInScreenState extends State<LogInScreen> {
           Image.asset(
             iLogIn,
             width: MediaQuery.of(context).size.width / 1.5,
+            color: Theme.of(context).colorScheme.background.withOpacity(0.8),
+            colorBlendMode: BlendMode.difference,
           ),
           const SizedBox(height: 10),
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Text(
               'Log In',
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
-                color: kBlackColor,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    fontSize: 16,
+                  ),
             ),
           ),
           const SizedBox(height: 20),
@@ -168,12 +171,9 @@ class _LogInScreenState extends State<LogInScreen> {
                     }
                   },
                 ),
-                const Text(
+                Text(
                   'or',
-                  style: TextStyle(
-                    fontSize: size16,
-                    color: kHintColor,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 20),
                 GestureDetector(
@@ -182,12 +182,9 @@ class _LogInScreenState extends State<LogInScreen> {
                   },
                   child: RichText(
                     textAlign: TextAlign.center,
-                    text: const TextSpan(
+                    text: TextSpan(
                       text: "Don't have an account? ",
-                      style: TextStyle(
-                        fontSize: size14,
-                        color: kBlackColor,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       children: [
                         TextSpan(
                           text: 'Sign Up',
