@@ -20,6 +20,16 @@ class AppTheme {
     ),
 
     // brightness: Brightness.dark,
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color>(
+        (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return kPrimaryColor.withOpacity(.32);
+          }
+          return kPrimaryColor;
+        },
+      ),
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: kWhiteColor,
       titleTextStyle: GoogleFonts.poppins(
@@ -47,8 +57,8 @@ class AppTheme {
       onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
     ),
 
-    inputDecorationTheme: InputDecorationTheme(
-      hintStyle: const TextStyle(
+    inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(
         fontSize: 14,
         color: kHintColor,
       ),
@@ -107,10 +117,10 @@ class AppTheme {
         letterSpacing: 0.2,
       ),
     ),
-    inputDecorationTheme: InputDecorationTheme(
-      hintStyle: const TextStyle(
+    inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(
         fontSize: 12,
-        color: kWhiteColor,
+        color: Colors.white38,
       ),
     ), // Text Theme
     textTheme: TextTheme(

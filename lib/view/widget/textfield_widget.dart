@@ -51,9 +51,8 @@ class TextFormWidget extends StatelessWidget {
                 ),
                 child: Icon(
                   prefixIcon,
-                  // Icons.search,
                   size: 20,
-                  color: Theme.of(context).textTheme.bodySmall?.color,
+                  color: kWhiteColor,
                 ),
               ),
         suffixIcon: suffixIcon == null

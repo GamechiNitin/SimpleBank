@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:simple_bank/utils/assets.dart';
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/authentication/signup_screen.dart';
 import 'package:simple_bank/view/screen/bnb/home.dart';
 import 'package:simple_bank/view/widget/button_widget.dart';
 import 'package:simple_bank/view/widget/textfield_widget.dart';
@@ -47,6 +48,16 @@ class _LogInScreenState extends State<LogInScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => const Home(),
+      ),
+      (route) => false,
+    );
+  }
+
+  void gotoSignUpPage() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignUpPage(),
       ),
       (route) => false,
     );
@@ -98,13 +109,15 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
           ),
           const SizedBox(height: 30),
-          Image.asset(
-            iLogIn,
-            width: MediaQuery.of(context).size.width / 1.5,
-            color: Theme.of(context).colorScheme.background.withOpacity(0.8),
-            colorBlendMode: BlendMode.difference,
+          Column(
+            children: [
+              Image.asset(
+                iLogIn,
+                width: MediaQuery.of(context).size.width / 2,
+              ),
+            ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -178,14 +191,14 @@ class _LogInScreenState extends State<LogInScreen> {
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    // gotoSignUpPage();
+                    gotoSignUpPage();
                   },
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
                       text: "Don't have an account? ",
                       style: Theme.of(context).textTheme.bodyMedium,
-                      children: [
+                      children: const [
                         TextSpan(
                           text: 'Sign Up',
                           style: TextStyle(
