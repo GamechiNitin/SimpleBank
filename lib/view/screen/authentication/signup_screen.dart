@@ -61,23 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      text: "Digital",
-                      style: Theme.of(context).appBarTheme.titleTextStyle,
-                      children: [
-                        TextSpan(
-                          text: "Money",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  const DMWidget(textAlign: TextAlign.center),
                   const SizedBox(height: 30),
                   Image.asset(
                     iSignUP,
