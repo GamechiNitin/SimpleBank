@@ -43,6 +43,7 @@ class AppTheme {
 
     scaffoldBackgroundColor:
         ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
+    dividerColor: Colors.black38,
     colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: kWhiteColor,
@@ -55,6 +56,10 @@ class AppTheme {
       onBackground: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
       surface: kPrimaryColor,
       onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      modalBackgroundColor:
+          ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
     ),
 
     inputDecorationTheme: const InputDecorationTheme(
@@ -70,6 +75,9 @@ class AppTheme {
       bodySmall: GoogleFonts.notoSerif(
         color: kBlackColor,
       ),
+      labelSmall: GoogleFonts.poppins(
+        color: kHintColor,
+      ),
     ),
   );
 
@@ -78,13 +86,17 @@ class AppTheme {
     // colorSchemeSeed: kPrimaryColor,
     primaryColor: kPrimaryColor,
     scaffoldBackgroundColor: kDarkGrey1Color,
+    bottomSheetTheme: const BottomSheetThemeData(
+      modalBackgroundColor: kDarkGreyColor,
+    ),
+    dividerColor: Colors.white38,
 
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
       primary: kPrimaryColor,
       onPrimary: kBlackColor,
       secondary: kDarkGreyColor,
-      onSecondary: kPrimaryColor,
+      onSecondary: kLPrimaryColor,
       error: kPrimaryColor,
       onError: kPrimaryColor,
       background: kDarkGrey1Color,
@@ -93,6 +105,8 @@ class AppTheme {
       onSurface: kPrimaryColor,
     ),
     useMaterial3: true,
+    unselectedWidgetColor: kLightWhiteColor,
+    disabledColor: kLightWhiteColor,
     appBarTheme: AppBarTheme(
       // titleSpacing: 0,
       backgroundColor: kDarkGreyColor,
@@ -122,9 +136,11 @@ class AppTheme {
         fontSize: 12,
         color: Colors.white38,
       ),
-    ), // Text Theme
+    ),
+
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.poppins(color: kWhiteColor),
+      labelSmall: GoogleFonts.poppins(color: kLightWhiteColor),
       bodySmall: GoogleFonts.notoSerif(color: kWhiteColor),
     ),
   );

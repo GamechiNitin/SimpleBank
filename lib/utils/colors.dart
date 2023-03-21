@@ -8,7 +8,7 @@ const Color kSecondaryColor = Colors.redAccent;
 const Color kLightSecondaryColor = Colors.redAccent;
 
 const Color kWhiteColor = Colors.white;
-Color kLightWhiteColor = Colors.white.withOpacity(0.9);
+Color kLightWhiteColor = Colors.white.withOpacity(0.5);
 const Color kBlackColor = Colors.black;
 
 const Color kHintColor = Colors.black38;
