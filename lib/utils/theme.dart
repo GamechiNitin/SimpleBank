@@ -44,6 +44,7 @@ class AppTheme {
     scaffoldBackgroundColor:
         ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
     dividerColor: Colors.black38,
+    splashColor: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
     colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: kWhiteColor,
