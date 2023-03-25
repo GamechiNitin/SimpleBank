@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/widget/chart/line_chart.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
 import 'package:simple_bank/view/widget/watchlist_dropdown.dart';
 
@@ -232,9 +233,11 @@ class _WatchListScreenState extends State<WatchListScreen>
       body: TabBarView(
         controller: controller,
         children: [
-          flChart(),
-          // Center(child: Text("Bank",),),
-          // HomeScreen(),
+          ListView(
+            children: const [
+              LineChartWidget(),
+            ],
+          ),
           const Center(child: Text("Stock")),
           const Center(child: Text("Funds")),
           const Center(child: Text("Crypto")),
@@ -242,133 +245,6 @@ class _WatchListScreenState extends State<WatchListScreen>
           const Center(child: Text("Wallets")),
         ],
       ),
-    );
-  }
-
-  Widget flChart() {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 30, right: 16),
-          width: MediaQuery.of(context).size.width,
-          height: 250,
-          child: LineChart(
-            LineChartData(
-              // backgroundColor: kLPrimaryColor,
-
-              gridData: FlGridData(
-                drawVerticalLine: false,
-              ),
-              titlesData: FlTitlesData(
-                topTitles: AxisTitles(
-                  sideTitles: SideTitles(),
-                ),
-                bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                    showTitles: true,
-                    reservedSize: 30,
-                    // interval: 7000,
-                    // getTitlesWidget: (value, meta) {},
-                  ),
-                  axisNameWidget: Text(
-                    "Years",
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                  axisNameSize: 20,
-                ),
-                rightTitles: AxisTitles(),
-                leftTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                    showTitles: true,
-                    reservedSize: 40,
-                    interval: 7000,
-                    // getTitlesWidget: (value, meta) {},
-                  ),
-                  drawBehindEverything: true,
-                  axisNameWidget: Text(
-                    "Amount (Money) Rs ",
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                  axisNameSize: 20,
-                ),
-              ),
-              borderData: FlBorderData(
-                show: true,
-                border: Border(
-                  bottom: BorderSide(
-                    color: Theme.of(context).textTheme.labelSmall!.color!,
-                    width: 2,
-                  ),
-                  left: BorderSide(
-                    color: Theme.of(context).textTheme.labelSmall!.color!,
-                    width: 2,
-                  ),
-                ),
-              ),
-              clipData: FlClipData(
-                bottom: false,
-                left: false,
-                right: false,
-                top: true,
-              ),
-              // read about it in the LineChartData section
-              // baselineX: 2,
-              betweenBarsData: [
-                // BetweenBarsData(
-                //   fromIndex: 0,
-                //   toIndex: 11,
-                //   color: kErrorColor,
-                // ),
-              ],
-              // maxX: 2,
-
-              lineBarsData: [
-                LineChartBarData(
-                  belowBarData: BarAreaData(
-                    show: true,
-                    // color: kPrimaryColor,
-                    gradient: LinearGradient(
-                      colors: [
-                        kBlueColor,
-                        kPrimaryColor.withOpacity(0.2),
-                        kBlueAccentColor.withOpacity(0.1),
-                        // kErrorColor,
-                      ],
-                    ),
-                  ),
-                  dotData: FlDotData(
-                    show: true,
-                  ),
-                  lineChartStepData: LineChartStepData(
-                    stepDirection: 20,
-                  ),
-                  isCurved: true,
-                  color: kWhiteColor,
-                  gradient: const LinearGradient(
-                    colors: [
-                      kWhiteColor,
-                      // kBlueAccentColor,
-                      kPrimaryColor,
-                      // kErrorColor,
-                    ],
-                  ),
-                  barWidth: 3,
-                  spots: List.generate(
-                    12,
-                    (index) => FlSpot(
-                      index.toDouble() * 10,
-                      index.isEven ? index * 2000 : index * 2500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            swapAnimationDuration:
-                const Duration(milliseconds: 150), // Optional
-            swapAnimationCurve: Curves.linear, // Optional
-          ),
-        ),
-      ],
     );
   }
 }
