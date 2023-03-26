@@ -11,7 +11,7 @@ const Color kWhiteColor = Colors.white;
 Color kLightWhiteColor = Colors.white.withOpacity(0.5);
 const Color kBlackColor = Colors.black;
 
-const Color kHintColor = Colors.black38;
+Color kHintColor = Colors.black26;
 
 const Color kErrorColor = Colors.redAccent;
 const Color kBlueAccentColor = Colors.blueAccent;

@@ -1,4 +1,5 @@
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/more/feedback_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -118,7 +119,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 QuickIconWidget(
                   text: "Feedback",
                   icon: Icons.email,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const FeedbackScreen(),
+                      ),
+                    );
+                  },
                 ),
                 QuickIconWidget(
                   text: "T&C",

@@ -135,6 +135,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 const SizedBox(height: 20),
                 TextFormWidget(
+                  maxLines: 1,
                   controller: passwordController,
                   focusNode: passwordFn,
                   label: 'Enter Password : 83r5^_58',

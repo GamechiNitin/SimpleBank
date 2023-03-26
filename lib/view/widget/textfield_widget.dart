@@ -14,6 +14,9 @@ class TextFormWidget extends StatelessWidget {
     this.validator,
     this.obscureText,
     this.onSuffixIxonTap,
+    this.contentPadding,
+    this.minLines,
+    this.maxLines,
   });
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -25,10 +28,15 @@ class TextFormWidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool? obscureText;
   final VoidCallback? onSuffixIxonTap;
+  final int? minLines;
+  final int? maxLines;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      minLines: minLines,
+      maxLines: maxLines,
       controller: controller,
       focusNode: focusNode,
       onChanged: onChanged,
@@ -68,7 +76,7 @@ class TextFormWidget extends StatelessWidget {
                   ),
                 ),
               ),
-        contentPadding: EdgeInsets.zero,
+        contentPadding: contentPadding ?? EdgeInsets.zero,
         border: CustomDecoration.kInputBorder,
         enabledBorder: CustomDecoration.kInputBorder,
         focusedBorder: CustomDecoration.kInputBorder,

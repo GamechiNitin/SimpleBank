@@ -63,7 +63,7 @@ class AppTheme {
           ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
     ),
 
-    inputDecorationTheme: const InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(
         fontSize: 14,
         color: kHintColor,
@@ -132,10 +132,10 @@ class AppTheme {
         letterSpacing: 0.2,
       ),
     ),
-    inputDecorationTheme: const InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(
         fontSize: 12,
-        color: Colors.white38,
+        color: kHintColor,
       ),
     ),
 
