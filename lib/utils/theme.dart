@@ -135,7 +135,7 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(
         fontSize: 12,
-        color: kHintColor,
+        color: kLightWhiteColor,
       ),
     ),
 

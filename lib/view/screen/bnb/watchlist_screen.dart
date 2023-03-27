@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/bnb/component/grid_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
 import 'package:simple_bank/view/widget/watchlist_dropdown.dart';
@@ -18,6 +19,113 @@ class _WatchListScreenState extends State<WatchListScreen>
     with SingleTickerProviderStateMixin {
   TabController? controller;
   var currentIndex = 0;
+  bool crossAxisCount = false;
+  List<WatchlistModel> watchList = [
+    WatchlistModel(
+      bankName: "List of all the Bank",
+      shortBankName: "All Bank",
+      type: "ALL",
+      balance: "1,00,000,00.00",
+      lastAmount: "1,00,000.00",
+      percenttage: "10",
+    ),
+    WatchlistModel(
+      bankName: "Upstox - Stock Trading App",
+      shortBankName: "Upstox",
+      type: "Stock Trading App",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "State Bank of India",
+      shortBankName: "SBI",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "Zerodha - Stock Trading App",
+      shortBankName: "Zerodha",
+      type: "Stock Trading App",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "State Bank of Gujarat",
+      shortBankName: "SBG",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "Bank of Baroda",
+      shortBankName: "BOB",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "Union Bank of India",
+      shortBankName: "Union Bank",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "Upstox - Stock Trading App",
+      shortBankName: "Upstox",
+      type: "Stock Trading App",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "State Bank of India",
+      shortBankName: "SBI",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "Zerodha - Stock Trading App",
+      shortBankName: "Zerodha",
+      type: "Stock Trading App",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "State Bank of Gujarat",
+      shortBankName: "SBG",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "Bank of Baroda",
+      shortBankName: "BOB",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+    WatchlistModel(
+      bankName: "Union Bank of India",
+      shortBankName: "Union Bank",
+      type: "Bank",
+      balance: "1641.00",
+      lastAmount: "5133.25",
+      percenttage: "7",
+    ),
+  ];
 
   @override
   void initState() {
@@ -116,7 +224,8 @@ class _WatchListScreenState extends State<WatchListScreen>
                                                       .textTheme
                                                       .bodyMedium
                                                       ?.copyWith(
-                                                          fontSize: size12),
+                                                        fontSize: size12,
+                                                      ),
                                                 ),
                                               ],
                                             ),
@@ -234,8 +343,54 @@ class _WatchListScreenState extends State<WatchListScreen>
         controller: controller,
         children: [
           ListView(
-            children: const [
-              LineChartWidget(),
+            // shrinkWrap: true,
+            children: [
+              const LineChartWidget(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 20,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text("Girdview"),
+                    IconButton(
+                      onPressed: () {
+                        crossAxisCount = !crossAxisCount;
+                        _notify();
+                      },
+                      icon: Icon(
+                        Icons.grid_view,
+                        color: Theme.of(context).hintColor,
+                        size: 18,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(16),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: watchList.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount ? 3 : 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return GridComponent(
+                    isSelected: index == 0,
+                    shortName: watchList[index].shortBankName,
+                    fullName: watchList[index].bankName,
+                    balance: watchList[index].balance,
+                    lastTransaction: watchList[index].lastAmount,
+                    percentage: watchList[index].percenttage,
+                  );
+                },
+              )
             ],
           ),
           const Center(child: Text("Stock")),

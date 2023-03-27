@@ -7,7 +7,7 @@ class LineChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 30, right: 16, left: 20),
+      padding: const EdgeInsets.only(top: 10, right: 16, left: 20),
       width: MediaQuery.of(context).size.width,
       height: 220,
       child: LineChart(
@@ -46,7 +46,7 @@ class LineChartWidget extends StatelessWidget {
                           val,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontSize: 10,
+                                    fontSize: 8,
                                     fontWeight: FontWeight.w500,
                                     color: kWhiteColor,
                                   ),
@@ -77,7 +77,7 @@ class LineChartWidget extends StatelessWidget {
                   Widget text(String val) => Text(
                         val,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontSize: 10,
+                              fontSize: 8,
                               fontWeight: FontWeight.w500,
                             ),
                       );
@@ -177,3 +177,4 @@ class LineChartWidget extends StatelessWidget {
     );
   }
 }
+
