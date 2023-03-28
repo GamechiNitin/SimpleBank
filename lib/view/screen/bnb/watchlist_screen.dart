@@ -1,6 +1,3 @@
-import 'dart:developer';
-import 'dart:math';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/bnb/component/grid_component.dart';
@@ -19,14 +16,14 @@ class _WatchListScreenState extends State<WatchListScreen>
     with SingleTickerProviderStateMixin {
   TabController? controller;
   var currentIndex = 0;
-  bool crossAxisCount = false;
+  bool isGridView = false;
   List<WatchlistModel> watchList = [
     WatchlistModel(
       bankName: "List of all the Bank",
       shortBankName: "All Bank",
       type: "ALL",
-      balance: "1,00,000,00.00",
-      lastAmount: "1,00,000.00",
+      balance: "10 B",
+      lastAmount: "1 K",
       percenttage: "10",
     ),
     WatchlistModel(
@@ -349,16 +346,15 @@ class _WatchListScreenState extends State<WatchListScreen>
               Padding(
                 padding: const EdgeInsets.only(
                   left: 16,
-                  right: 16,
                   top: 20,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Girdview"),
+                    Text(isGridView ? "Girdview" : "Listview"),
                     IconButton(
                       onPressed: () {
-                        crossAxisCount = !crossAxisCount;
+                        isGridView = !isGridView;
                         _notify();
                       },
                       icon: Icon(
@@ -370,27 +366,45 @@ class _WatchListScreenState extends State<WatchListScreen>
                   ],
                 ),
               ),
-              GridView.builder(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(16),
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: watchList.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount ? 3 : 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
+              if (isGridView)
+                GridView.builder(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(16),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: watchList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return GridComponent(
+                      isSelected: index == 0,
+                      shortName: watchList[index].shortBankName,
+                      fullName: watchList[index].bankName,
+                      balance: watchList[index].balance,
+                      lastTransaction: watchList[index].lastAmount,
+                      percentage: watchList[index].percenttage,
+                    );
+                  },
+                )
+              else
+                ListView.builder(
+                  itemCount: watchList.length,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return WatchlistComponent(
+                      isSelected: index == 0,
+                      imageUrl: "https://picsum.photos/200",
+                      shortName: watchList[index].shortBankName,
+                      fullName: watchList[index].bankName,
+                      balance: watchList[index].balance,
+                      lastTransaction: watchList[index].lastAmount,
+                      percentage: watchList[index].percenttage,
+                    );
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  return GridComponent(
-                    isSelected: index == 0,
-                    shortName: watchList[index].shortBankName,
-                    fullName: watchList[index].bankName,
-                    balance: watchList[index].balance,
-                    lastTransaction: watchList[index].lastAmount,
-                    percentage: watchList[index].percenttage,
-                  );
-                },
-              )
             ],
           ),
           const Center(child: Text("Stock")),

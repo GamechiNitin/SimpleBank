@@ -14,6 +14,7 @@ const Color kBlackColor = Colors.black;
 Color kHintColor = Colors.black26;
 
 const Color kErrorColor = Colors.redAccent;
+const Color kRedColor = Colors.red;
 const Color kBlueAccentColor = Colors.blueAccent;
 const Color kBlueColor = Colors.blue;
 

@@ -1,5 +1,5 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/widget/chart/line_chart.dart';
+import 'package:simple_bank/view/widget/chart/mini_line_chart.dart';
 
 class GridComponent extends StatelessWidget {
   const GridComponent(
@@ -24,10 +24,11 @@ class GridComponent extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kBorderRadius),
         border: Border.all(
-            color: isSelected == true
-                ? kBlueAccentColor
-                : Theme.of(context).disabledColor,
-            width: 0.5),
+          color: isSelected == true
+              ? kBlueAccentColor
+              : Theme.of(context).disabledColor,
+          width: kBorderWidth,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

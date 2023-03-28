@@ -74,8 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           return WatchlistComponent(
             shortName: watchList[index].shortBankName ?? "",
-            bankName: watchList[index].bankName ?? "",
-            type: watchList[index].type ?? "",
+            fullName: watchList[index].bankName ?? "",
+            balance: watchList[index].type ?? "",
           );
         },
       ),

@@ -1,4 +1,3 @@
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:simple_bank/utils/import.dart';
 
@@ -66,7 +65,6 @@ class MiniLineChartWidget extends StatelessWidget {
               gradient: const LinearGradient(
                 colors: [
                   kBlueAccentColor,
-                  kWhiteColor,
                   kPrimaryColor,
                   // kErrorColor,
                 ],
