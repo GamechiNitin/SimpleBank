@@ -4,6 +4,7 @@ const Color kPrimaryColor = Color(0xff3CCF4E);
 Color kLPrimaryColor = const Color(0xff3CCF4E).withOpacity(0.3);
 const Color kLightPrimaryColor = Colors.redAccent;
 
+const Color kTransparentColor = Colors.transparent;
 const Color kSecondaryColor = Colors.redAccent;
 const Color kLightSecondaryColor = Colors.redAccent;
 

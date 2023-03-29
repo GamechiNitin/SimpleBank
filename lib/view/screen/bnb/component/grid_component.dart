@@ -37,7 +37,7 @@ class GridComponent extends StatelessWidget {
           if (shortName != null && shortName != "")
             Text(
               shortName!,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: isSelected == true ? kBlueAccentColor : null,
                     fontSize: size10,
                   ),
@@ -46,8 +46,9 @@ class GridComponent extends StatelessWidget {
             Text(
               fullName ?? "",
               maxLines: 1,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontSize: size8,
+                    color: Theme.of(context).disabledColor,
                   ),
             ),
           const MiniLineChartWidget(),
@@ -64,15 +65,15 @@ class GridComponent extends StatelessWidget {
                 Text(
                   lastTransaction ?? "",
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: size8,
+                        fontSize: size10,
                         color: kPrimaryColor,
                       ),
                 ),
               const SizedBox(width: 2),
               Text(
-                "(+$percentage %)",
+                "(+$percentage%)",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontSize: size8,
+                      fontSize: size10,
                     ),
               ),
             ],

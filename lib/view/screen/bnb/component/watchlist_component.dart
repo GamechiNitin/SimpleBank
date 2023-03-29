@@ -24,12 +24,12 @@ class WatchlistComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(
+          bottom: BorderSide(
             color: Theme.of(context).disabledColor,
-            width: kBorderWidth,
+            width: 0.1,
           ),
         ),
       ),
@@ -61,8 +61,12 @@ class WatchlistComponent extends StatelessWidget {
                     shortName!,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontSize: size14,
+                          color: isSelected == true ? kBlueAccentColor : null,
                         ),
                   ),
+                SizedBox(
+                  height: 2,
+                ),
                 if (fullName != null && fullName != "")
                   Text(
                     fullName!,

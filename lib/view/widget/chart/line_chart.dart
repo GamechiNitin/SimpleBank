@@ -7,13 +7,12 @@ class LineChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 10, right: 16, left: 20),
+      margin: EdgeInsets.only(top: 16),
+      padding: const EdgeInsets.only(right: 10, left: 10),
       width: MediaQuery.of(context).size.width,
       height: 220,
       child: LineChart(
         LineChartData(
-          // backgroundColor: kLPrimaryColor,
-
           gridData: FlGridData(
             drawVerticalLine: false,
           ),
@@ -25,13 +24,13 @@ class LineChartWidget extends StatelessWidget {
               drawBehindEverything: false,
               sideTitles: SideTitles(
                 showTitles: true,
-                reservedSize: 30,
+                reservedSize: 26,
                 getTitlesWidget: (value, meta) {
                   Widget text(String val) => Container(
                         width: 35,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
+                          borderRadius: BorderRadius.circular(4),
                           gradient: const LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomLeft,
@@ -41,12 +40,12 @@ class LineChartWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                        margin: const EdgeInsets.only(top: 8),
+                        margin: const EdgeInsets.only(top: 10),
                         child: Text(
                           val,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontSize: 8,
+                                    fontSize: size10,
                                     fontWeight: FontWeight.w500,
                                     color: kWhiteColor,
                                   ),
@@ -60,7 +59,10 @@ class LineChartWidget extends StatelessWidget {
                     case 9:
                       return text("SEP");
                     case 12:
-                      return text("DEC");
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 26),
+                        child: text("DEC"),
+                      );
                     default:
                       return const SizedBox();
                   }
@@ -71,7 +73,7 @@ class LineChartWidget extends StatelessWidget {
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                reservedSize: 35,
+                reservedSize: 25,
                 interval: 7000,
                 getTitlesWidget: (value, meta) {
                   Widget text(String val) => Text(
@@ -177,4 +179,3 @@ class LineChartWidget extends StatelessWidget {
     );
   }
 }
-

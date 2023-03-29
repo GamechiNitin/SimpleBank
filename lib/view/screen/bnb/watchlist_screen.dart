@@ -343,24 +343,60 @@ class _WatchListScreenState extends State<WatchListScreen>
             // shrinkWrap: true,
             children: [
               const LineChartWidget(),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  top: 20,
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                      color: Theme.of(context).disabledColor,
+                      width: 0.1,
+                    ),
+                    bottom: BorderSide(
+                      color: Theme.of(context).disabledColor,
+                      width: 0.1,
+                    ),
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(isGridView ? "Girdview" : "Listview"),
-                    IconButton(
-                      onPressed: () {
+                    RichText(
+                      text: TextSpan(
+                        text: "Watch",
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              fontSize: size14,
+                            ),
+                        children: [
+                          TextSpan(
+                            text: "List",
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      fontSize: size14,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                          )
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
                         isGridView = !isGridView;
                         _notify();
                       },
-                      icon: Icon(
-                        Icons.grid_view,
-                        color: Theme.of(context).hintColor,
-                        size: 18,
+                      child: Container(
+                        color: kTransparentColor,
+                        padding: const EdgeInsets.all(2),
+                        child: Icon(
+                          isGridView
+                              ? Icons.grid_view
+                              : Icons.format_list_bulleted_rounded,
+                          color: Theme.of(context).hintColor,
+                          size: 18,
+                        ),
                       ),
                     )
                   ],
@@ -372,7 +408,7 @@ class _WatchListScreenState extends State<WatchListScreen>
                   padding: const EdgeInsets.all(16),
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: watchList.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
@@ -392,6 +428,12 @@ class _WatchListScreenState extends State<WatchListScreen>
                 ListView.builder(
                   itemCount: watchList.length,
                   shrinkWrap: true,
+                  padding: const EdgeInsets.only(
+                    top: 4,
+                    right: 16,
+                    bottom: 20,
+                    left: 16,
+                  ),
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return WatchlistComponent(
