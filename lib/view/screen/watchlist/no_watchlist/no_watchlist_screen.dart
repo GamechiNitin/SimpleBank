@@ -1,6 +1,6 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/bnb/component/grid_card_component.dart';
-import 'package:simple_bank/view/screen/bnb/component/slider_component.dart';
+import 'package:simple_bank/view/screen/watchlist/no_watchlist/component/grid_card_component.dart';
+import 'package:simple_bank/view/screen/watchlist/no_watchlist/component/slider_component.dart';
 
 class NoWatchListScreen extends StatelessWidget {
   const NoWatchListScreen({super.key});
@@ -63,7 +63,7 @@ class NoWatchListScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20, top: 20),
+            padding: const EdgeInsets.only(left: 20, top: 20),
             child: Text(
               "Create Watchlist ",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(

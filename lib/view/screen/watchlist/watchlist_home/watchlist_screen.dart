@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/bnb/component/grid_component.dart';
+import 'package:simple_bank/view/screen/watchlist/watchlist_home/component/grid_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
 import 'package:simple_bank/view/widget/watchlist_dropdown.dart';

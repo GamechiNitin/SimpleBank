@@ -64,7 +64,7 @@ class WatchlistComponent extends StatelessWidget {
                           color: isSelected == true ? kBlueAccentColor : null,
                         ),
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
                 if (fullName != null && fullName != "")

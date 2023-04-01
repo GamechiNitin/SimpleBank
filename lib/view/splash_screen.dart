@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/authentication/login_screen.dart';
-import 'package:simple_bank/view/screen/bnb/home.dart';
+import 'package:simple_bank/view/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,16 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> initTimer() async {
     Timer(const Duration(seconds: 2), gotoLogInScreen);
-  }
-
-  void gotoHomeScreen() {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
-      ),
-      (route) => false,
-    );
   }
 
   void gotoLogInScreen() {
