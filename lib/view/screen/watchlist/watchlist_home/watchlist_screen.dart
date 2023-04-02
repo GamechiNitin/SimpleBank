@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/watchlist/watchlist_details/watchlist_details_screen.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_home/component/grid_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
@@ -421,6 +422,16 @@ class _WatchListScreenState extends State<WatchListScreen>
                       balance: watchList[index].balance,
                       lastTransaction: watchList[index].lastAmount,
                       percentage: watchList[index].percenttage,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => WatchListDetailScreen(
+                              watchListModel: watchList[index],
+                              watchList: watchList,
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 )
@@ -444,6 +455,16 @@ class _WatchListScreenState extends State<WatchListScreen>
                       balance: watchList[index].balance,
                       lastTransaction: watchList[index].lastAmount,
                       percentage: watchList[index].percenttage,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => WatchListDetailScreen(
+                              watchListModel: watchList[index],
+                              watchList: watchList,
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
