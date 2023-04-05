@@ -1,9 +1,11 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:simple_bank/model/watchlist_model.dart';
-import 'package:simple_bank/utils/colors.dart';
-import 'package:simple_bank/view/screen/watchlist/no_watchlist/no_watchlist_screen.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_home/component/watchlist_component.dart';
+import 'dart:developer';
+
+import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/account_info_appbar_component.dart';
+import 'package:simple_bank/view/screen/watchlist/watchlist_home/component/grid_component.dart';
+import 'package:simple_bank/view/widget/chart/line_chart.dart';
+import 'package:simple_bank/view/widget/persistent_header.dart';
+import 'package:simple_bank/view/widget/persistent_tabbar.dart';
 
 class WatchListDetailScreen extends StatefulWidget {
   const WatchListDetailScreen(
@@ -19,12 +21,14 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
     with SingleTickerProviderStateMixin {
   TabController? controller;
   var currentIndex = 0;
+  bool isGridView = false;
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     controller = TabController(
-      length: 6,
+      length: 4,
       vsync: this,
     );
     controller?.addListener(() {
@@ -40,142 +44,67 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            floating: false,
-            snap: false,
-            stretch: false,
-            expandedHeight: 150.0,
-            collapsedHeight: kToolbarHeight,
-            titleSpacing: 0,
-            flexibleSpace: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  widget.watchListModel.bankName ?? "",
-                  style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
-                        fontSize: 12,
-                      ),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.watchListModel.shortBankName ?? "",
-                      // "10 scribs",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                      ),
-                      height: 4,
-                      width: 4,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: kPrimaryColor,
-                      ),
-                    ),
-                    Text(
-                      widget.watchListModel.type ?? "",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.watchListModel.bankName ?? "",
-                  style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
-                        fontSize: 12,
-                      ),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.watchListModel.shortBankName ?? "",
-                      // "10 scribs",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                      ),
-                      height: 4,
-                      width: 4,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: kPrimaryColor,
-                      ),
-                    ),
-                    Text(
-                      widget.watchListModel.type ?? "",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-            bottom: PreferredSize(
-              preferredSize: Size(MediaQuery.of(context).size.width, 35),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                      width: 0.2,
-                    ),
+      body: NestedScrollView(
+        controller: scrollController,
+        headerSliverBuilder: (context, val) {
+          log(val.toString());
+          return [
+            SliverAppBar(
+              surfaceTintColor: kTransparentColor,
+              pinned: true,
+              expandedHeight: kToolbarHeight,
+              titleSpacing: 0,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.watchListModel.bankName ?? "",
+                    style:
+                        Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
+                              fontSize: 12,
+                            ),
                   ),
-                ),
-                alignment: Alignment.centerLeft,
-                child: TabBar(
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.watchListModel.shortBankName ?? "",
+                        // "10 scribs",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                        ),
+                        height: 4,
+                        width: 4,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                      Text(
+                        widget.watchListModel.type ?? "",
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SliverToBoxAdapter(child: AccountInfoAppBarComponent()),
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: PersistentHeader(
+                child: PersistentTabBar(
                   controller: controller,
-                  indicatorColor: kPrimaryColor,
-                  dividerColor: Colors.transparent,
-                  isScrollable: true,
-                  dragStartBehavior: DragStartBehavior.start,
-                  labelColor: Theme.of(context).textTheme.bodySmall?.color,
-                  labelStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.italic,
-                      ),
-                  unselectedLabelStyle:
-                      Theme.of(context).textTheme.bodySmall?.copyWith(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.italic,
-                          ),
-                  unselectedLabelColor: Theme.of(context).disabledColor,
-                  labelPadding: const EdgeInsets.only(
-                    top: 6,
-                    bottom: 6,
-                    right: 20,
-                    left: 20,
-                  ),
-                  // padding: const EdgeInsets.symmetric(horizontal: 12),
                   tabs: const [
                     Text("Chart"),
                     Text("Transaction"),
@@ -184,41 +113,151 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
                   ],
                 ),
               ),
-            ),
-          ),
-          SliverFillRemaining(
-            hasScrollBody: true,
-            child: TabBarView(
-              controller: controller,
-              children: const [
-                Center(child: Text("Chart")),
-                Center(child: Text("Transaction")),
-                Center(child: Text("Analysis")),
-                Center(child: Text("Account")),
+            )
+          ];
+        },
+        body: TabBarView(
+          controller: controller,
+          children: [
+            ListView(
+              // shrinkWrap: true,
+              children: [
+                const LineChartWidget(),
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Theme.of(context).disabledColor,
+                        width: 0.1,
+                      ),
+                      bottom: BorderSide(
+                        color: Theme.of(context).disabledColor,
+                        width: 0.1,
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: "Watch",
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    fontSize: size14,
+                                  ),
+                          children: [
+                            TextSpan(
+                              text: "List",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    fontSize: size14,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                            )
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          isGridView = !isGridView;
+                          _notify();
+                        },
+                        child: Container(
+                          color: kTransparentColor,
+                          padding: const EdgeInsets.all(2),
+                          child: Icon(
+                            isGridView
+                                ? Icons.grid_view
+                                : Icons.format_list_bulleted_rounded,
+                            color: Theme.of(context).hintColor,
+                            size: 18,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                if (isGridView)
+                  GridView.builder(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(16),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: widget.watchList.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, index) {
+                      return GridComponent(
+                        isSelected: index == 0,
+                        shortName: widget.watchList[index].shortBankName,
+                        fullName: widget.watchList[index].bankName,
+                        balance: widget.watchList[index].balance,
+                        lastTransaction: widget.watchList[index].lastAmount,
+                        percentage: widget.watchList[index].percenttage,
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => WatchListDetailScreen(
+                                watchListModel: widget.watchList[index],
+                                watchList: widget.watchList,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  )
+                else
+                  ListView.builder(
+                    itemCount: widget.watchList.length,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(
+                      top: 4,
+                      right: 16,
+                      bottom: 20,
+                      left: 16,
+                    ),
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return WatchlistComponent(
+                        isSelected: index == 0,
+                        imageUrl: "https://picsum.photos/200",
+                        shortName: widget.watchList[index].shortBankName,
+                        fullName: widget.watchList[index].bankName,
+                        balance: widget.watchList[index].balance,
+                        lastTransaction: widget.watchList[index].lastAmount,
+                        percentage: widget.watchList[index].percenttage,
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => WatchListDetailScreen(
+                                watchListModel: widget.watchList[index],
+                                watchList: widget.watchList,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
               ],
             ),
-          ),
-          // SliverList(
-          //   delegate: SliverChildBuilderDelegate(
-          //     (BuildContext context, int index) {
-          //       return Padding(
-          //         padding: const EdgeInsets.only(left: 20, right: 20),
-          //         child: WatchlistComponent(
-          //           isSelected: index == 0,
-          //           imageUrl: "https://picsum.photos/200",
-          //           shortName: widget.watchList[index].shortBankName,
-          //           fullName: widget.watchList[index].bankName,
-          //           balance: widget.watchList[index].balance,
-          //           lastTransaction: widget.watchList[index].lastAmount,
-          //           percentage: widget.watchList[index].percenttage,
-          //           onTap: () {},
-          //         ),
-          //       );
-          //     },
-          //     childCount: widget.watchList.length,
-          //   ),
-          // ),
-        ],
+            const Center(child: Text("Transaction")),
+            const Center(child: Text("Analysis")),
+            const Center(child: Text("Account")),
+          ],
+        ),
       ),
     );
   }
