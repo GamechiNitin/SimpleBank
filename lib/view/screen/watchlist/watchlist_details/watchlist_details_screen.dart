@@ -54,6 +54,35 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
               pinned: true,
               expandedHeight: kToolbarHeight,
               titleSpacing: 0,
+              actions: [
+                Container(
+                  height: 25,
+                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  margin: EdgeInsets.only(right: 16),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        // kBlueAccentColor,
+                        // kPrimaryColor,
+                        kPrimaryColor,
+                        kPrimaryColor.withOpacity(0.5),
+                      ],
+                    ),
+                  ),
+                  child: Text(
+                    "Saving Account",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontSize: size12,
+                          fontWeight: FontWeight.w500,
+                          color: kWhiteColor,
+                        ),
+                  ),
+                ),
+              ],
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

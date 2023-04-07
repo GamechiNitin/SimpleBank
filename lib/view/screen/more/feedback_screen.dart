@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:simple_bank/utils/assets.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/authentication/signup_screen.dart';
 import 'package:simple_bank/view/home.dart';

@@ -45,13 +45,13 @@ class CustomDecoration {
     boxShadow: [
       BoxShadow(
         color: Colors.grey.shade300,
-        offset: Offset(5, 5),
+        offset: const Offset(5, 5),
         blurRadius: 10,
         spreadRadius: 1,
       ),
       BoxShadow(
         color: Colors.grey.shade300,
-        offset: Offset(-5, -5),
+        offset: const Offset(-5, -5),
         blurRadius: 10,
         spreadRadius: 1,
       ),
