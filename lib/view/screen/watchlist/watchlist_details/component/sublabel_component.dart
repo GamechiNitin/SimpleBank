@@ -11,7 +11,7 @@ class SublaelComponent extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 85,
+          width: 75,
           child: Text(
             l1 ?? "",
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
@@ -19,12 +19,16 @@ class SublaelComponent extends StatelessWidget {
                 ),
           ),
         ),
-        Text(
-          ": $l2",
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                fontSize: 8,
-                color: color,
-              ),
+        Flexible(
+          child: Text(
+            ":  $l2",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  fontSize: 8,
+                  color: color,
+                ),
+          ),
         ),
       ],
     );

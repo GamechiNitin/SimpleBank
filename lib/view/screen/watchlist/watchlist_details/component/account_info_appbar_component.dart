@@ -17,7 +17,7 @@ class AccountInfoAppBarComponent extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            balance ?? "2,00,020",
+            balance ?? "\$ 2,00,020.00",
             style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
                   fontSize: 20,
                   color: kErrorColor,

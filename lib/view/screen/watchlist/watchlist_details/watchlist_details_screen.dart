@@ -45,11 +45,11 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: kBlackColor,
       body: NestedScrollView(
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         controller: scrollController,
         headerSliverBuilder: (context, val) {
-          log(val.toString());
           return [
             SliverAppBar(
               surfaceTintColor: kTransparentColor,

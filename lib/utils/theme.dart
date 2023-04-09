@@ -91,6 +91,7 @@ class AppTheme {
       modalBackgroundColor: kDarkGreyColor,
     ),
     dividerColor: Colors.white38,
+    splashColor: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
 
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
