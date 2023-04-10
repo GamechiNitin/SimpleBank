@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/chart_tab_component.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/pie_chart_component.dart';
+import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/recent_activity_component.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/sublabel_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
 import 'package:simple_bank/view/widget/chart/mini_hit_bar_chart.dart';
@@ -28,6 +29,35 @@ class ChartTab extends StatelessWidget {
           highAmount: "50,004.85",
           color: Theme.of(context).appBarTheme.backgroundColor!,
           applyBorder: true,
+        ),
+        const SizedBox(height: 20),
+        RecentActivityComponent(
+          hitColor: const [
+            kPrimaryColor,
+            kBlueAccentColor,
+            Colors.tealAccent,
+            kLightPrimaryColor,
+            Colors.deepPurple,
+            Colors.tealAccent,
+          ],
+          activity: const [
+            "Amount 543.00 is credited from PMO",
+            "Cheque bounce",
+            "OTP requested from only payment",
+            "Google pay amount request",
+            "Refund of 451.00 is credited to the account",
+            "Amount 543.00 is credited from PMO",
+          ],
+          date: const [
+            "30 June 2022",
+            "10 Jan 1999",
+            "20 April 2000",
+            "10 April 2023",
+            "10 April 2023",
+            "10 April 2023",
+          ],
+          applyBorder: true,
+          color: Theme.of(context).appBarTheme.backgroundColor!,
         ),
         const SizedBox(height: 20),
         PieChartComponent(
