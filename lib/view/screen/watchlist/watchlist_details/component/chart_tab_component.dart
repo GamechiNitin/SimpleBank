@@ -93,7 +93,7 @@ class ChartTabComponent extends StatelessWidget {
                       SublaelComponent(
                         l1: "Customer Name",
                         l2: customerName,
-                        color: kWhiteColor,
+                        // color: kWhiteColor,
                       ),
                       SublaelComponent(
                         l1: "Branch",

@@ -14,7 +14,7 @@ class SublaelComponent extends StatelessWidget {
           width: 75,
           child: Text(
             l1 ?? "",
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 8,
                 ),
           ),
@@ -24,9 +24,8 @@ class SublaelComponent extends StatelessWidget {
             ":  $l2",
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: 8,
-                  color: color,
                 ),
           ),
         ),

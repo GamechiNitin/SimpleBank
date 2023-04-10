@@ -7,10 +7,9 @@ class LineChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 16),
       padding: const EdgeInsets.only(right: 10, left: 10),
       width: MediaQuery.of(context).size.width,
-      height: 220,
+      height: 160,
       child: LineChart(
         LineChartData(
           gridData: FlGridData(

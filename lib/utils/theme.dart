@@ -79,6 +79,9 @@ class AppTheme {
       labelSmall: GoogleFonts.poppins(
         color: kHintColor,
       ),
+      displaySmall: GoogleFonts.poppins(
+        color: kBlackColor.withOpacity(0.8),
+      ),
     ),
   );
 
@@ -144,6 +147,9 @@ class AppTheme {
       bodyMedium: GoogleFonts.poppins(color: kWhiteColor),
       labelSmall: GoogleFonts.poppins(color: kLightWhiteColor),
       bodySmall: GoogleFonts.notoSerif(color: kWhiteColor),
+      displaySmall: GoogleFonts.poppins(
+        color: kWhiteColor.withOpacity(0.8),
+      ),
     ),
   );
 }
