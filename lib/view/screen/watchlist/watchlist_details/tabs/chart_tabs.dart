@@ -1,11 +1,8 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/chart_tab_component.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/pie_chart_component.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/recent_activity_component.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/sublabel_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
-import 'package:simple_bank/view/widget/chart/mini_hit_bar_chart.dart';
 
 class ChartTab extends StatelessWidget {
   const ChartTab({super.key});
@@ -15,7 +12,7 @@ class ChartTab extends StatelessWidget {
     return ListView(
       children: [
         const LineChartWidget(),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         ChartTabComponent(
           accountNumber: "141XXXXXXXX457",
           branch: "Vasad (1452)",
@@ -27,7 +24,7 @@ class ChartTab extends StatelessWidget {
           lowAmount: "93.00",
           averageAmount: "3,555.00",
           highAmount: "50,004.85",
-          color: Theme.of(context).appBarTheme.backgroundColor!,
+          color: Theme.of(context).scaffoldBackgroundColor,
           applyBorder: true,
         ),
         const SizedBox(height: 20),
@@ -57,7 +54,7 @@ class ChartTab extends StatelessWidget {
             "10 April 2023",
           ],
           applyBorder: true,
-          color: Theme.of(context).appBarTheme.backgroundColor!,
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
         const SizedBox(height: 20),
         PieChartComponent(

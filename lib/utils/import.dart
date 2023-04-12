@@ -10,7 +10,7 @@ export 'package:simple_bank/view/screen/watchlist/watchlist_home/watchlist_scree
 // Home - BNB
 export 'package:simple_bank/view/screen/market/market_screen.dart';
 export 'package:simple_bank/view/screen/dashboard/dashboard_screen.dart';
-// Home - BNB - Componenr
+// Home - BNB - Component
 export 'package:simple_bank/view/screen/watchlist/watchlist_home/component/watchlist_component.dart';
 
 // Utils
@@ -33,3 +33,4 @@ export 'package:simple_bank/model/watchlist_model.dart';
 export 'package:simple_bank/view/widget/quick_icon_listtile_widget.dart';
 export 'package:simple_bank/view/widget/quick_icon_widget.dart';
 export 'package:simple_bank/view/widget/dm_widget.dart';
+export 'package:simple_bank/view/widget/border_container_widget.dart';

@@ -1,3 +1,4 @@
+
 import 'package:simple_bank/utils/import.dart';
 
 class RecentActivityComponent extends StatelessWidget {
@@ -15,60 +16,31 @@ class RecentActivityComponent extends StatelessWidget {
   final bool? applyBorder;
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: applyBorder != null
-          ? BorderRadius.circular(kBorderRadius)
-          : BorderRadius.zero,
-      child: Container(
-        margin: applyBorder == true
-            ? const EdgeInsets.symmetric(horizontal: 10)
-            : EdgeInsets.zero,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        height: 160,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius:
-              applyBorder == true ? BorderRadius.circular(kBorderRadius) : null,
-          color: color.withOpacity(0.2),
-          border: Border.all(
-            color: Theme.of(context)
-                .appBarTheme
-                .titleTextStyle!
-                .color!
-                .withOpacity(0.4),
-            width: 0.9,
+    return BorderContainerWidget(
+      color: color,
+      applyBorder: applyBorder,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Recent Activity",
+            style: Theme.of(context).textTheme.bodySmall,
           ),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 20,
-              spreadRadius: 0,
-              color: color.withAlpha(120),
-            )
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Recent Activity",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            ...List.generate(
-              activity.length,
-              (index) => Padding(
-                padding: EdgeInsets.only(top: index != 0 ? 3 : 0),
-                child: RecentActivityItemView(
-                  date: date[index],
-                  activity: activity[index],
-                  hitColor: hitColor[index],
-                ),
+          const SizedBox(
+            height: 8,
+          ),
+          ...List.generate(
+            activity.length,
+            (index) => Padding(
+              padding: EdgeInsets.only(top: index != 0 ? 3 : 0),
+              child: RecentActivityItemView(
+                date: date[index],
+                activity: activity[index],
+                hitColor: hitColor[index],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -98,7 +70,7 @@ class RecentActivityItemView extends StatelessWidget {
         Expanded(
           child: Text(
             activity,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: size10,
                 ),
           ),
@@ -115,7 +87,7 @@ class RecentActivityItemView extends StatelessWidget {
           height: 15,
           child: Text(
             date,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
                   fontSize: size10,
                 ),
           ),

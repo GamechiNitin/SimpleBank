@@ -11,7 +11,7 @@ class SublaelComponent extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 75,
+          width: 72,
           child: Text(
             l1 ?? "",
             style: Theme.of(context).textTheme.displaySmall?.copyWith(

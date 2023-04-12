@@ -14,6 +14,7 @@ Color kLightWhiteColor = Colors.white.withOpacity(0.5);
 const Color kBlackColor = Colors.black;
 
 Color kHintColor = Colors.black26;
+Color kLightDisabledColor = const Color(0x61000000);
 
 const Color kErrorColor = Colors.redAccent;
 const Color kRedColor = Colors.red;
