@@ -2,10 +2,15 @@ import 'package:simple_bank/utils/import.dart';
 
 class BorderContainerWidget extends StatelessWidget {
   const BorderContainerWidget(
-      {super.key, this.applyBorder, required this.color, required this.child});
+      {super.key,
+      this.applyBorder,
+      required this.color,
+      required this.child,
+      this.height});
   final bool? applyBorder;
   final Color color;
   final Widget child;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class BorderContainerWidget extends StatelessWidget {
             ? const EdgeInsets.symmetric(horizontal: 10)
             : EdgeInsets.zero,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        height: 160,
+        height: height ?? 160,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius:
