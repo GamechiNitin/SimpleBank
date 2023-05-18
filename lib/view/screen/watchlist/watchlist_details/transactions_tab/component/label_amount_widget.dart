@@ -1,4 +1,3 @@
-
 import 'package:simple_bank/utils/import.dart';
 
 class LabelAmountWidget extends StatelessWidget {
@@ -21,7 +20,7 @@ class LabelAmountWidget extends StatelessWidget {
         const Icon(
           Icons.currency_bitcoin,
           color: Colors.yellow,
-          size: 20,
+          size: size16,
         ),
         Text(
           amount,

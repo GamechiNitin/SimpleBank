@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+double kOpacity = 0.7;
 const Color kPrimaryColor = Color(0xff3CCF4E);
 // const Color kPrimaryColor = Colors.tealAccent;
 Color kLPrimaryColor = const Color(0xff3CCF4E).withOpacity(0.3);
@@ -20,6 +21,12 @@ const Color kErrorColor = Colors.redAccent;
 const Color kRedColor = Colors.red;
 const Color kBlueAccentColor = Colors.blueAccent;
 const Color kBlueColor = Colors.blue;
+
+// Transaction Card Color
+Color kLightTealColor = Colors.teal.withOpacity(kOpacity);
+Color kLightGreenColor = Colors.green.withOpacity(kOpacity);
+Color kRedAccentColor = Colors.redAccent.withOpacity(kOpacity);
+Color kPinkAccentColor = Colors.pinkAccent.shade200.withOpacity(kOpacity);
 
 // Dark Theme Color
 const Color kDarkGreyColor = Color(0xFF121212);

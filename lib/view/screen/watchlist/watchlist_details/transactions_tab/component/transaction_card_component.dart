@@ -1,3 +1,4 @@
+import 'package:simple_bank/utils/decoration.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/component/label_amount_widget.dart';
 
@@ -21,101 +22,106 @@ class TransactionCardItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(kBorderRadius),
-      ),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            decoration: BoxDecoration(
-              color: isCredit ? kDarkGrey2Color : kDarkGreyColor,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(kBorderRadius),
-                topRight: Radius.circular(kBorderRadius),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  id,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: size10,
-                      ),
+    return BlocBuilder<DarkModeCubit, DarkModeInitialState>(
+      builder: (context, state) {
+        return Container(
+          decoration: state.isDarkMode
+              ? CustomDecoration.cardDarkDeocoration
+              : CustomDecoration.cardLightDeocoration,
+          child: Column(
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).appBarTheme.backgroundColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(kBorderRadius),
+                    topRight: Radius.circular(kBorderRadius),
+                  ),
                 ),
-                Row(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      dateTime,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      id,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontSize: size10,
                           ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                      child: VerticalDivider(
-                        color: kWhiteColor,
-                        thickness: 2,
-                      ),
-                    ),
-                    Text(
-                      status,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: size10,
-                            color: Colors.lightBlueAccent,
+                    Row(
+                      children: [
+                        Text(
+                          dateTime,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: size10,
+                              ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                          child: VerticalDivider(
+                            color:
+                                Theme.of(context).textTheme.bodyMedium!.color,
+                            thickness: 2,
                           ),
+                        ),
+                        Text(
+                          status,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(
+                                fontSize: size10,
+                                color: Colors.lightBlueAccent,
+                              ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          Container(
-            padding:
-                const EdgeInsets.only(left: 12, right: 12, top: 16, bottom: 8),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: isCredit
-                    ? [
-                        Colors.teal.withOpacity(0.7),
-                        Colors.green.withOpacity(0.7),
-                      ]
-                    : [
-                        Colors.redAccent.withOpacity(0.7),
-                        Colors.pinkAccent.shade200.withOpacity(0.7),
-                      ],
               ),
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(kBorderRadius),
-                bottomRight: Radius.circular(kBorderRadius),
-              ),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  message,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontSize: size10,
-                        color: kWhiteColor,
-                      ),
+              Container(
+                padding: const EdgeInsets.only(
+                  left: 12,
+                  right: 12,
+                  top: 16,
+                  bottom: 8,
                 ),
-                Column(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: isCredit
+                        ? [kLightTealColor, kLightGreenColor]
+                        : [kRedAccentColor, kPinkAccentColor],
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(kBorderRadius),
+                    bottomRight: Radius.circular(kBorderRadius),
+                  ),
+                ),
+                child: Column(
                   children: [
-                    const SizedBox(height: 4),
-                    const Text(
+                    Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: size10,
+                          ),
+                    ),
+                    Text(
                       "-----------------------------------------",
                       maxLines: 1,
+                      style: TextStyle(color: kLightWhiteColor),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         LabelAmountWidget(
-                          label: isCredit ? "Credit : " : "Debit : ",
+                          label: isCredit ? "Credited : " : "Debited : ",
                           amount: lastAmount,
                         ),
                         LabelAmountWidget(
@@ -126,11 +132,11 @@ class TransactionCardItemWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

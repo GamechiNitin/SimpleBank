@@ -57,4 +57,41 @@ class CustomDecoration {
       ),
     ],
   );
+
+  static Decoration cardLightDeocoration = BoxDecoration(
+    color: kLightWhiteColor,
+    borderRadius: BorderRadius.circular(10),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.shade300,
+        offset: const Offset(5, 5),
+        blurRadius: 10,
+        spreadRadius: 1,
+      ),
+      BoxShadow(
+        color: Colors.grey.shade300,
+        offset: const Offset(-5, -5),
+        blurRadius: 10,
+        spreadRadius: 1,
+      ),
+    ],
+  );
+  static Decoration cardDarkDeocoration = BoxDecoration(
+    color: kDarkGrey1Color,
+    borderRadius: BorderRadius.circular(10),
+    boxShadow: const [
+      BoxShadow(
+        color: Colors.black12,
+        offset: Offset(5, 5),
+        blurRadius: 10,
+        spreadRadius: 1,
+      ),
+      BoxShadow(
+        color: Colors.black12,
+        offset: Offset(-5, -5),
+        blurRadius: 10,
+        spreadRadius: 1,
+      ),
+    ],
+  );
 }

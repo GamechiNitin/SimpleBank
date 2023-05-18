@@ -1,5 +1,4 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/component/transaction_card_component.dart';
 
 class TransactionTab extends StatelessWidget {
   const TransactionTab({super.key});
