@@ -27,6 +27,12 @@ Color kLightTealColor = Colors.teal.withOpacity(kOpacity);
 Color kLightGreenColor = Colors.green.withOpacity(kOpacity);
 Color kRedAccentColor = Colors.redAccent.withOpacity(kOpacity);
 Color kPinkAccentColor = Colors.pinkAccent.shade200.withOpacity(kOpacity);
+Color kLightBlueAccentColor = Colors.blueAccent.withOpacity(kOpacity);
+Color kdeepOrangeColor = Colors.deepOrange.withOpacity(kOpacity);
+Color ktealColor = Colors.teal.withOpacity(kOpacity);
+Color ktealAccentColor = Colors.tealAccent.withOpacity(kOpacity);
+Color kdeepPurpleAccentColor = Colors.deepPurpleAccent.withOpacity(kOpacity);
+Color kpurpleAccentColor = Colors.purpleAccent.withOpacity(kOpacity);
 
 // Dark Theme Color
 const Color kDarkGreyColor = Color(0xFF121212);

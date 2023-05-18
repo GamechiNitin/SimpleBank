@@ -39,3 +39,6 @@ export 'package:simple_bank/view/widget/border_container_widget.dart';
 export 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/component/transaction_card_component.dart';
 export 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/component/label_amount_widget.dart';
 export 'package:simple_bank/utils/decoration.dart';
+
+// Account Tab
+export 'package:simple_bank/view/screen/watchlist/watchlist_details/account_tab/component/account_tile_widget.dart';
