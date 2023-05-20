@@ -4,12 +4,14 @@ class AccountCardComponent extends StatelessWidget {
   const AccountCardComponent(
       {super.key,
       required this.name,
-      required this.date,
+      this.date,
       required this.children,
-      required this.colors});
+      required this.colors,
+      this.dateLabel});
   final String name;
-  final String date;
-  final List<AccountTileWidget> children;
+  final String? dateLabel;
+  final String? date;
+  final List<Widget> children;
   final List<Color> colors;
   @override
   Widget build(BuildContext context) {
@@ -46,44 +48,45 @@ class AccountCardComponent extends StatelessWidget {
                             color: kWhiteColor,
                           ),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          date,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: size10,
-                                color: kWhiteColor,
-                              ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                          child: VerticalDivider(
-                            color: kWhiteColor,
-                            thickness: 2,
+                    if (date != null && date != "")
+                      Row(
+                        children: [
+                          Text(
+                            date!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: size10,
+                                  color: kWhiteColor,
+                                ),
                           ),
-                        ),
-                        Text(
-                          "Last Updated",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontSize: size10,
-                                color: kWhiteColor,
-                              ),
-                        ),
-                      ],
-                    ),
+                          const SizedBox(
+                            height: 10,
+                            child: VerticalDivider(
+                              color: kWhiteColor,
+                              thickness: 2,
+                            ),
+                          ),
+                          Text(
+                            dateLabel ?? "Last Updated",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
+                                  fontSize: size10,
+                                  color: kWhiteColor,
+                                ),
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ),
               Container(
                 padding: const EdgeInsets.only(left: 12, right: 12, top: 8),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).appBarTheme.backgroundColor,
+                  color: Theme.of(context).colorScheme.shadow,
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(kBorderRadius),
                     bottomRight: Radius.circular(kBorderRadius),

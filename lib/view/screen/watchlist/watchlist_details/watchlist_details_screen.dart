@@ -1,9 +1,12 @@
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/watchlist/watchlist_details/account_tab/account_tab.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/account_info_appbar_component.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/charts_tab/chart_tab.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/transactions_tab.dart';
 import 'package:simple_bank/view/widget/persistent_header.dart';
 import 'package:simple_bank/view/widget/persistent_tabbar.dart';
+
+import 'services_tab/services_tab.dart';
 
 class WatchListDetailScreen extends StatefulWidget {
   const WatchListDetailScreen(
@@ -136,7 +139,7 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
                   tabs: const [
                     Text("Quick"),
                     Text("Transaction"),
-                    Text("Analysis"),
+                    Text("Services"),
                     Text("Account"),
                   ],
                 ),
@@ -149,8 +152,8 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
           children: const [
             ChartTab(),
             TransactionTab(),
-            Center(child: Text("Analysis")),
-            Center(child: Text("Account")),
+            ServicesTab(),
+            AccountTab(),
           ],
         ),
       ),

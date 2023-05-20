@@ -3,6 +3,10 @@ import 'package:simple_bank/utils/import.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
+    switchTheme: const SwitchThemeData(
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      trackOutlineColor: MaterialStatePropertyAll(kTransparentColor),
+    ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: kWhiteColor,
       selectedIconTheme: IconThemeData(color: kBlackColor),
@@ -57,6 +61,7 @@ class AppTheme {
       onBackground: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
       surface: kPrimaryColor,
       onSurface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
+      shadow: kWhiteColor,
     ),
     bottomSheetTheme: BottomSheetThemeData(
       modalBackgroundColor:
@@ -107,6 +112,8 @@ class AppTheme {
       background: kDarkGrey1Color,
       onBackground: kPrimaryColor,
       surface: ColorScheme.fromSeed(seedColor: kPrimaryColor).primary,
+      shadow: Colors.teal.withOpacity(0.3),
+      // shadow: kPrimaryColor.withOpacity(0.2),
       onSurface: kPrimaryColor,
     ),
     useMaterial3: true,
@@ -120,6 +127,10 @@ class AppTheme {
         fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
+    ),
+    switchTheme: const SwitchThemeData(
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      trackOutlineColor: MaterialStatePropertyAll(kTransparentColor),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: kBlackColor,
@@ -147,9 +158,7 @@ class AppTheme {
       bodyMedium: GoogleFonts.poppins(color: kWhiteColor),
       labelSmall: GoogleFonts.poppins(color: kLightWhiteColor),
       bodySmall: GoogleFonts.notoSerif(color: kWhiteColor),
-      displaySmall: GoogleFonts.poppins(
-        color: kWhiteColor.withOpacity(0.6)
-      ),
+      displaySmall: GoogleFonts.poppins(color: kWhiteColor.withOpacity(0.6)),
     ),
   );
 }
