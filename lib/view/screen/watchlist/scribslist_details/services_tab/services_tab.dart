@@ -1,5 +1,5 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/account_tab/component/account_card_component.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/account_tab/component/account_card_component.dart';
 import 'package:simple_bank/view/widget/switch_widget.dart';
 
 class ServicesTab extends StatefulWidget {

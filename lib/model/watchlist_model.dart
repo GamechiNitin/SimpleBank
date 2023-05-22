@@ -1,16 +1,13 @@
 class WatchlistModel {
-  String? bankName;
-  String? type;
-  String? shortBankName;
-  String? balance;
-  String? lastAmount;
-  String? percenttage;
+  String? watchListName;
+  String? watchListType;
+  String? desc;
+  int? scribsCount;
+
   WatchlistModel({
-    this.bankName,
-    this.type,
-    this.shortBankName,
-    this.balance,
-    this.lastAmount,
-    this.percenttage,
+    this.scribsCount,
+    this.desc,
+    this.watchListType,
+    this.watchListName,
   });
 }

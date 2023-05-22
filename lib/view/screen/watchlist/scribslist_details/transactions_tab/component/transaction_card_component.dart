@@ -1,6 +1,4 @@
-import 'package:simple_bank/utils/decoration.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/component/label_amount_widget.dart';
 
 class TransactionCardItemWidget extends StatelessWidget {
   const TransactionCardItemWidget(

@@ -27,11 +27,6 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isTermOfUse = false;
   bool obscureText = true;
 
-  _changeLoading(bool loading) {
-    isLoading = loading;
-    _notify();
-  }
-
   _notify() {
     if (mounted) setState(() {});
   }

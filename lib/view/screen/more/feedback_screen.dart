@@ -27,11 +27,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   bool isLoading = false;
   bool obscureText = true;
 
-  _changeLoading(bool loading) {
-    isLoading = loading;
-    _notify();
-  }
-
   _notify() {
     if (mounted) setState(() {});
   }

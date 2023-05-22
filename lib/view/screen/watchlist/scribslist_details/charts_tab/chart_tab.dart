@@ -1,7 +1,7 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/chart_tab_component.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/pie_chart_component.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/recent_activity_component.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/component/chart_tab_component.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/component/pie_chart_component.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/component/recent_activity_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
 
 class ChartTab extends StatelessWidget {

@@ -25,11 +25,6 @@ class _LogInScreenState extends State<LogInScreen> {
   bool isLoading = false;
   bool obscureText = true;
 
-  _changeLoading(bool loading) {
-    isLoading = loading;
-    _notify();
-  }
-
   _notify() {
     if (mounted) setState(() {});
   }

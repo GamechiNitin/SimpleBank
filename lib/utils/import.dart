@@ -25,6 +25,8 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:simple_bank/cubit/theme_cubit/dark_mode_cubit.dart';
 // Model
 export 'package:simple_bank/model/watchlist_model.dart';
+export 'package:simple_bank/model/scribs_model.dart';
+
 // Response
 // Library
 // Respository
@@ -36,9 +38,9 @@ export 'package:simple_bank/view/widget/dm_widget.dart';
 export 'package:simple_bank/view/widget/border_container_widget.dart';
 
 // Transaction Tab
-export 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/component/transaction_card_component.dart';
-export 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/component/label_amount_widget.dart';
+export 'package:simple_bank/view/screen/watchlist/scribslist_details/transactions_tab/component/transaction_card_component.dart';
+export 'package:simple_bank/view/screen/watchlist/scribslist_details/transactions_tab/component/label_amount_widget.dart';
 export 'package:simple_bank/utils/decoration.dart';
 
 // Account Tab
-export 'package:simple_bank/view/screen/watchlist/watchlist_details/account_tab/component/account_tile_widget.dart';
+export 'package:simple_bank/view/screen/watchlist/scribslist_details/account_tab/component/account_tile_widget.dart';

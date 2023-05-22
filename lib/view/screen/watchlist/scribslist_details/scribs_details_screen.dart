@@ -1,24 +1,23 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/account_tab/account_tab.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/account_info_appbar_component.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/charts_tab/chart_tab.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/transactions_tab/transactions_tab.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/account_tab/account_tab.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/component/account_info_appbar_component.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/charts_tab/chart_tab.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/transactions_tab/transactions_tab.dart';
 import 'package:simple_bank/view/widget/persistent_header.dart';
 import 'package:simple_bank/view/widget/persistent_tabbar.dart';
-
 import 'services_tab/services_tab.dart';
 
-class WatchListDetailScreen extends StatefulWidget {
-  const WatchListDetailScreen(
-      {super.key, required this.watchListModel, required this.watchList});
-  final WatchlistModel watchListModel;
-  final List<WatchlistModel> watchList;
+class ScribsListDetailScreen extends StatefulWidget {
+  const ScribsListDetailScreen(
+      {super.key, required this.scribsListModel, required this.scribsList});
+  final ScribsListModel scribsListModel;
+  final List<ScribsListModel> scribsList;
 
   @override
-  State<WatchListDetailScreen> createState() => _WatchListDetailScreenState();
+  State<ScribsListDetailScreen> createState() => _ScribsListDetailScreenState();
 }
 
-class _WatchListDetailScreenState extends State<WatchListDetailScreen>
+class _ScribsListDetailScreenState extends State<ScribsListDetailScreen>
     with SingleTickerProviderStateMixin {
   TabController? controller;
   var currentIndex = 0;
@@ -89,7 +88,7 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.watchListModel.bankName ?? "",
+                    widget.scribsListModel.bankName ?? "",
                     style:
                         Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
                               fontSize: 12,
@@ -99,7 +98,7 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        widget.watchListModel.shortBankName ?? "",
+                        widget.scribsListModel.shortBankName ?? "",
                         // "10 scribs",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontSize: 10,
@@ -118,7 +117,7 @@ class _WatchListDetailScreenState extends State<WatchListDetailScreen>
                         ),
                       ),
                       Text(
-                        widget.watchListModel.type ?? "",
+                        widget.scribsListModel.type ?? "",
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.w500,

@@ -73,10 +73,10 @@ class NoWatchListScreen extends StatelessWidget {
                   ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20),
+          const Padding(
+            padding: EdgeInsets.all(20),
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                   child: GridCardComponent(
                     one: "For",
@@ -95,10 +95,10 @@ class NoWatchListScreen extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                   child: GridCardComponent(
                     one: "For",

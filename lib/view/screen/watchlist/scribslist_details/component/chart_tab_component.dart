@@ -1,5 +1,5 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/component/sublabel_component.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/component/sublabel_component.dart';
 import 'package:simple_bank/view/widget/chart/mini_hit_bar_chart.dart';
 
 class ChartTabComponent extends StatelessWidget {

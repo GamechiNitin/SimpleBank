@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_details/watchlist_details_screen.dart';
+import 'package:simple_bank/view/screen/watchlist/scribslist_details/scribs_details_screen.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist_home/component/grid_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
@@ -18,8 +18,8 @@ class _WatchListScreenState extends State<WatchListScreen>
   TabController? controller;
   var currentIndex = 0;
   bool isGridView = false;
-  List<WatchlistModel> watchList = [
-    WatchlistModel(
+  List<ScribsListModel> scribList = [
+    ScribsListModel(
       bankName: "List of all the Bank",
       shortBankName: "All Bank",
       type: "ALL",
@@ -27,7 +27,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "1 K",
       percenttage: "10",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Upstox - Stock Trading App",
       shortBankName: "Upstox",
       type: "Stock Trading App",
@@ -35,7 +35,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "State Bank of India",
       shortBankName: "SBI",
       type: "Bank",
@@ -43,7 +43,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Zerodha - Stock Trading App",
       shortBankName: "Zerodha",
       type: "Stock Trading App",
@@ -51,7 +51,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "State Bank of Gujarat",
       shortBankName: "SBG",
       type: "Bank",
@@ -59,7 +59,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Bank of Baroda",
       shortBankName: "BOB",
       type: "Bank",
@@ -67,7 +67,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Union Bank of India",
       shortBankName: "Union Bank",
       type: "Bank",
@@ -75,7 +75,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Upstox - Stock Trading App",
       shortBankName: "Upstox",
       type: "Stock Trading App",
@@ -83,7 +83,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "State Bank of India",
       shortBankName: "SBI",
       type: "Bank",
@@ -91,7 +91,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Zerodha - Stock Trading App",
       shortBankName: "Zerodha",
       type: "Stock Trading App",
@@ -99,7 +99,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "State Bank of Gujarat",
       shortBankName: "SBG",
       type: "Bank",
@@ -107,7 +107,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Bank of Baroda",
       shortBankName: "BOB",
       type: "Bank",
@@ -115,7 +115,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       lastAmount: "5133.25",
       percenttage: "7",
     ),
-    WatchlistModel(
+    ScribsListModel(
       bankName: "Union Bank of India",
       shortBankName: "Union Bank",
       type: "Bank",
@@ -274,7 +274,13 @@ class _WatchListScreenState extends State<WatchListScreen>
                     watchListType: "Personal Watchlist",
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const NoWatchListScreen(),
+                        ),
+                      );
+                    },
                     icon: Icon(
                       Icons.add_circle_outline,
                       // size: 25,
@@ -367,7 +373,7 @@ class _WatchListScreenState extends State<WatchListScreen>
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: "Watch",
+                        text: "Scribs",
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               fontSize: size14,
                             ),
@@ -408,7 +414,7 @@ class _WatchListScreenState extends State<WatchListScreen>
                   shrinkWrap: true,
                   padding: const EdgeInsets.all(16),
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: watchList.length,
+                  itemCount: scribList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     mainAxisSpacing: 10,
@@ -417,17 +423,17 @@ class _WatchListScreenState extends State<WatchListScreen>
                   itemBuilder: (context, index) {
                     return GridComponent(
                       isSelected: index == 0,
-                      shortName: watchList[index].shortBankName,
-                      fullName: watchList[index].bankName,
-                      balance: watchList[index].balance,
-                      lastTransaction: watchList[index].lastAmount,
-                      percentage: watchList[index].percenttage,
+                      shortName: scribList[index].shortBankName,
+                      fullName: scribList[index].bankName,
+                      balance: scribList[index].balance,
+                      lastTransaction: scribList[index].lastAmount,
+                      percentage: scribList[index].percenttage,
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => WatchListDetailScreen(
-                              watchListModel: watchList[index],
-                              watchList: watchList,
+                            builder: (context) => ScribsListDetailScreen(
+                              scribsListModel: scribList[index],
+                              scribsList: scribList,
                             ),
                           ),
                         );
@@ -437,7 +443,7 @@ class _WatchListScreenState extends State<WatchListScreen>
                 )
               else
                 ListView.builder(
-                  itemCount: watchList.length,
+                  itemCount: scribList.length,
                   shrinkWrap: true,
                   padding: const EdgeInsets.only(
                     top: 4,
@@ -450,17 +456,17 @@ class _WatchListScreenState extends State<WatchListScreen>
                     return WatchlistComponent(
                       isSelected: index == 0,
                       imageUrl: "https://picsum.photos/200",
-                      shortName: watchList[index].shortBankName,
-                      fullName: watchList[index].bankName,
-                      balance: watchList[index].balance,
-                      lastTransaction: watchList[index].lastAmount,
-                      percentage: watchList[index].percenttage,
+                      shortName: scribList[index].shortBankName,
+                      fullName: scribList[index].bankName,
+                      balance: scribList[index].balance,
+                      lastTransaction: scribList[index].lastAmount,
+                      percentage: scribList[index].percenttage,
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => WatchListDetailScreen(
-                              watchListModel: watchList[index],
-                              watchList: watchList,
+                            builder: (context) => ScribsListDetailScreen(
+                              scribsListModel: scribList[index],
+                              scribsList: scribList,
                             ),
                           ),
                         );

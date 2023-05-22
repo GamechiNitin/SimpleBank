@@ -1,4 +1,3 @@
-import 'package:simple_bank/utils/decoration.dart';
 import 'package:simple_bank/utils/import.dart';
 
 class GridCardComponent extends StatelessWidget {
