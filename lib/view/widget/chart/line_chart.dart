@@ -9,7 +9,7 @@ class LineChartWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(right: 10, left: 10),
       width: MediaQuery.of(context).size.width,
-      height: 160,
+      height: 180,
       child: LineChart(
         LineChartData(
           gridData: FlGridData(
@@ -59,7 +59,7 @@ class LineChartWidget extends StatelessWidget {
                       return text("SEP");
                     case 12:
                       return Padding(
-                        padding: const EdgeInsets.only(right: 26),
+                        padding: const EdgeInsets.only(right: 35),
                         child: text("DEC"),
                       );
                     default:
@@ -73,7 +73,7 @@ class LineChartWidget extends StatelessWidget {
               sideTitles: SideTitles(
                 showTitles: true,
                 reservedSize: 25,
-                interval: 7000,
+                interval: 10000,
                 getTitlesWidget: (value, meta) {
                   Widget text(String val) => Text(
                         val,

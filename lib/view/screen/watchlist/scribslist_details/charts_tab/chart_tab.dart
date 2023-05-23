@@ -10,9 +10,10 @@ class ChartTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 20),
       children: [
         const LineChartWidget(),
-        const SizedBox(height: 30),
+        const SizedBox(height: 16),
         ChartTabComponent(
           accountNumber: "141XXXXXXXX457",
           branch: "Vasad (1452)",
@@ -24,7 +25,7 @@ class ChartTab extends StatelessWidget {
           lowAmount: "93.00",
           averageAmount: "3,555.00",
           highAmount: "50,004.85",
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(context).appBarTheme.backgroundColor!,
           applyBorder: true,
         ),
         const SizedBox(height: 20),
@@ -54,12 +55,12 @@ class ChartTab extends StatelessWidget {
             "10 April 2023",
           ],
           applyBorder: true,
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(context).appBarTheme.backgroundColor!,
         ),
         const SizedBox(height: 20),
         PieChartComponent(
           applyBorder: true,
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(context).appBarTheme.backgroundColor!,
         ),
         const SizedBox(height: 20),
       ],

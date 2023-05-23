@@ -101,7 +101,7 @@ class PieChartComponent extends StatelessWidget {
                             ),
                   ),
                   PieChartSectionData(
-                    color: Colors.tealAccent,
+                    color: kPinkAccentColor,
                     title: "10 %",
                     value: 10,
                     radius: 35,
