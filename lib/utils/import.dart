@@ -5,13 +5,13 @@ export 'package:flutter/material.dart';
 export 'package:simple_bank/view/splash_screen.dart';
 export 'package:simple_bank/view/screen/more/aboutus_screen.dart';
 export 'package:simple_bank/view/screen/watchlist/no_watchlist/no_watchlist_screen.dart';
-export 'package:simple_bank/view/screen/watchlist/watchlist_home/watchlist_screen.dart';
+export 'package:simple_bank/view/screen/watchlist/watchlist/watchlist_screen.dart';
 
 // Home - BNB
 export 'package:simple_bank/view/screen/market/market_screen.dart';
 export 'package:simple_bank/view/screen/dashboard/dashboard_screen.dart';
 // Home - BNB - Component
-export 'package:simple_bank/view/screen/watchlist/watchlist_home/component/watchlist_component.dart';
+export 'package:simple_bank/view/screen/watchlist/watchlist/component/watchlist_component.dart';
 
 // Utils
 export 'package:simple_bank/utils/text.dart';

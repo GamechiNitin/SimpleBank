@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
+import 'package:simple_bank/data/local_db.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/watchlist/scribslist_details/scribs_details_screen.dart';
-import 'package:simple_bank/view/screen/watchlist/watchlist_home/component/grid_component.dart';
+import 'package:simple_bank/view/screen/watchlist/watchlist/component/grid_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
 import 'package:simple_bank/view/widget/watchlist_dropdown.dart';
@@ -18,112 +19,6 @@ class _WatchListScreenState extends State<WatchListScreen>
   TabController? controller;
   var currentIndex = 0;
   bool isGridView = false;
-  List<ScribsListModel> scribList = [
-    ScribsListModel(
-      bankName: "List of all the Bank",
-      shortBankName: "All Bank",
-      type: "ALL",
-      balance: "10 B",
-      lastAmount: "1 K",
-      percenttage: "10",
-    ),
-    ScribsListModel(
-      bankName: "Upstox - Stock Trading App",
-      shortBankName: "Upstox",
-      type: "Stock Trading App",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "State Bank of India",
-      shortBankName: "SBI",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "Zerodha - Stock Trading App",
-      shortBankName: "Zerodha",
-      type: "Stock Trading App",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "State Bank of Gujarat",
-      shortBankName: "SBG",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "Bank of Baroda",
-      shortBankName: "BOB",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "Union Bank of India",
-      shortBankName: "Union Bank",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "Upstox - Stock Trading App",
-      shortBankName: "Upstox",
-      type: "Stock Trading App",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "State Bank of India",
-      shortBankName: "SBI",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "Zerodha - Stock Trading App",
-      shortBankName: "Zerodha",
-      type: "Stock Trading App",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "State Bank of Gujarat",
-      shortBankName: "SBG",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "Bank of Baroda",
-      shortBankName: "BOB",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-    ScribsListModel(
-      bankName: "Union Bank of India",
-      shortBankName: "Union Bank",
-      type: "Bank",
-      balance: "1641.00",
-      lastAmount: "5133.25",
-      percenttage: "7",
-    ),
-  ];
 
   @override
   void initState() {
@@ -142,7 +37,7 @@ class _WatchListScreenState extends State<WatchListScreen>
     if (mounted) setState(() {});
   }
 
-  int? selectedWatchList;
+  int selectedWatchList = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -244,13 +139,18 @@ class _WatchListScreenState extends State<WatchListScreen>
                                   ),
                                   Flexible(
                                     child: ListView.builder(
-                                      itemCount: 10,
+                                      itemCount: watchList.length,
                                       // padding: const EdgeInsets.only(top: 8),
                                       itemBuilder: (context, index) {
                                         return RadioWidget(
-                                          title: "Nitin Gamechi",
-                                          subTitle: "20 Scribs",
-                                          type: "Personal",
+                                          title:
+                                              watchList[index].watchListName ??
+                                                  "",
+                                          subTitle:
+                                              "${watchList.length} Scribs",
+                                          type:
+                                              watchList[index].watchListName ??
+                                                  "",
                                           value: index,
                                           groupValue: selectedWatchList,
                                           onChanged: (val) {
@@ -269,9 +169,12 @@ class _WatchListScreenState extends State<WatchListScreen>
                         },
                       );
                     },
-                    scribsNumber: "10 scribs",
-                    watchListName: "NitinGamechi",
-                    watchListType: "Personal Watchlist",
+                    scribsNumber:
+                        "${watchList[selectedWatchList].scribsCount} scribs",
+                    watchListName:
+                        watchList[selectedWatchList].watchListName ?? "",
+                    watchListType:
+                        watchList[selectedWatchList].watchListName ?? "",
                   ),
                   IconButton(
                     onPressed: () {
@@ -414,7 +317,7 @@ class _WatchListScreenState extends State<WatchListScreen>
                   shrinkWrap: true,
                   padding: const EdgeInsets.all(16),
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: scribList.length,
+                  itemCount: scribsList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     mainAxisSpacing: 10,
@@ -423,17 +326,17 @@ class _WatchListScreenState extends State<WatchListScreen>
                   itemBuilder: (context, index) {
                     return GridComponent(
                       isSelected: index == 0,
-                      shortName: scribList[index].shortBankName,
-                      fullName: scribList[index].bankName,
-                      balance: scribList[index].balance,
-                      lastTransaction: scribList[index].lastAmount,
-                      percentage: scribList[index].percenttage,
+                      shortName: scribsList[index].shortBankName,
+                      fullName: scribsList[index].bankName,
+                      balance: scribsList[index].balance,
+                      lastTransaction: scribsList[index].lastAmount,
+                      percentage: scribsList[index].percenttage,
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ScribsListDetailScreen(
-                              scribsListModel: scribList[index],
-                              scribsList: scribList,
+                              scribsListModel: scribsList[index],
+                              scribsList: scribsList,
                             ),
                           ),
                         );
@@ -443,7 +346,7 @@ class _WatchListScreenState extends State<WatchListScreen>
                 )
               else
                 ListView.builder(
-                  itemCount: scribList.length,
+                  itemCount: scribsList.length,
                   shrinkWrap: true,
                   padding: const EdgeInsets.only(
                     top: 4,
@@ -456,17 +359,17 @@ class _WatchListScreenState extends State<WatchListScreen>
                     return WatchlistComponent(
                       isSelected: index == 0,
                       imageUrl: "https://picsum.photos/200",
-                      shortName: scribList[index].shortBankName,
-                      fullName: scribList[index].bankName,
-                      balance: scribList[index].balance,
-                      lastTransaction: scribList[index].lastAmount,
-                      percentage: scribList[index].percenttage,
+                      shortName: scribsList[index].shortBankName,
+                      fullName: scribsList[index].bankName,
+                      balance: scribsList[index].balance,
+                      lastTransaction: scribsList[index].lastAmount,
+                      percentage: scribsList[index].percenttage,
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ScribsListDetailScreen(
-                              scribsListModel: scribList[index],
-                              scribsList: scribList,
+                              scribsListModel: scribsList[index],
+                              scribsList: scribsList,
                             ),
                           ),
                         );

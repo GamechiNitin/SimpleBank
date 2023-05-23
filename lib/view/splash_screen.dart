@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> initTimer() async {
-    Timer(const Duration(seconds: 1), gotoLogInScreen);
+    Timer(const Duration(seconds: 1), gotoHome);
   }
 
   void gotoLogInScreen() {

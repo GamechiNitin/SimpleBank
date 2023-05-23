@@ -1,4 +1,5 @@
 import 'package:simple_bank/utils/import.dart';
+import 'screen/watchlist/watchlist_home.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -34,8 +35,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: tabController,
         children: const [
-          WatchListScreen(),
-          // HomeScreen(),
+          WatchListHome(),
           MarketScreen(),
           DashboardScreen(),
         ],

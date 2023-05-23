@@ -6,14 +6,14 @@ import 'package:simple_bank/view/home.dart';
 import 'package:simple_bank/view/widget/button_widget.dart';
 import 'package:simple_bank/view/widget/textfield_widget.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class AddScribsPage extends StatefulWidget {
+  const AddScribsPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<AddScribsPage> createState() => _AddScribsPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _AddScribsPageState extends State<AddScribsPage> {
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -92,6 +92,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             return null;
                           },
                           onChanged: (val) {
+                           
                             log(val);
                             _notify();
                           },
