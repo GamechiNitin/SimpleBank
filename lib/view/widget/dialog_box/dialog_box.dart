@@ -20,7 +20,12 @@ class DialogBox {
           // titlePadding: EdgeInsets.zero,
           insetPadding: const EdgeInsets.symmetric(horizontal: 30),
           contentPadding: const EdgeInsets.only(left: 20, top: 20, right: 20),
-          title: const Text("Add WatchList"),
+          title: Text(
+            "Add WatchList",
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontSize: size20,
+                ),
+          ),
           children: [
             const SizedBox(height: 10),
             Form(

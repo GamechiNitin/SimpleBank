@@ -7,6 +7,18 @@ class AppTheme {
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       trackOutlineColor: MaterialStatePropertyAll(kTransparentColor),
     ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStatePropertyAll(
+          GoogleFonts.poppins(
+            color: kBlackColor,
+            fontSize: size16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+    ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: kWhiteColor,
       selectedIconTheme: IconThemeData(color: kBlackColor),
@@ -69,9 +81,15 @@ class AppTheme {
     ),
 
     inputDecorationTheme: InputDecorationTheme(
+      labelStyle: const TextStyle(
+        fontSize: 14,
+        color: kBlackColor,
+        fontWeight: FontWeight.w400,
+      ),
       hintStyle: TextStyle(
         fontSize: 14,
         color: kHintColor,
+        fontWeight: FontWeight.w400,
       ),
     ),
     textTheme: TextTheme(
@@ -148,12 +166,28 @@ class AppTheme {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      labelStyle: const TextStyle(
+        fontSize: 14,
+        color: kWhiteColor,
+        fontWeight: FontWeight.w400,
+      ),
       hintStyle: TextStyle(
-        fontSize: 12,
+        fontSize: 14,
         color: kLightWhiteColor,
+        fontWeight: FontWeight.w400,
       ),
     ),
-
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStatePropertyAll(
+          GoogleFonts.poppins(
+            color: kWhiteColor,
+            fontSize: size16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+    ),
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.poppins(color: kWhiteColor),
       labelSmall: GoogleFonts.poppins(color: kLightWhiteColor),

@@ -4,6 +4,7 @@ double kOpacity = 0.7;
 const Color kPrimaryColor = Color(0xff3CCF4E);
 // const Color kPrimaryColor = Colors.tealAccent;
 Color kLPrimaryColor = const Color(0xff3CCF4E).withOpacity(0.3);
+Color kPLColor = const Color(0xff3CCF4E).withOpacity(0.7);
 const Color kLightPrimaryColor = Colors.redAccent;
 
 const Color kTransparentColor = Colors.transparent;

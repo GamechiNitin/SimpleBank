@@ -16,6 +16,8 @@ class TextFormWidget extends StatelessWidget {
     this.contentPadding,
     this.minLines,
     this.maxLines,
+    this.keyboardType,
+    this.maxLength,
   });
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -30,12 +32,16 @@ class TextFormWidget extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
   final EdgeInsetsGeometry? contentPadding;
+  final TextInputType? keyboardType;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      minLines: minLines,
-      maxLines: maxLines,
+      keyboardType: keyboardType,
+      minLines: minLines ?? 1,
+      maxLines: maxLines ?? 1,
+      maxLength: maxLength,
       controller: controller,
       focusNode: focusNode,
       onChanged: onChanged,
@@ -43,17 +49,19 @@ class TextFormWidget extends StatelessWidget {
       onEditingComplete: onEditingComplete,
       validator: validator,
       obscureText: obscureText != null ? obscureText! : false,
+      style: Theme.of(context).inputDecorationTheme.labelStyle,
       decoration: InputDecoration(
         hintText: label,
         prefixIcon: prefixIcon == null
             ? null
             : Container(
-                margin: const EdgeInsets.only(right: 3),
-                decoration: const BoxDecoration(
-                  color: kPrimaryColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(3),
-                    bottomLeft: Radius.circular(3),
+                width: 50,
+                margin: const EdgeInsets.only(right: 12),
+                decoration: BoxDecoration(
+                  color: kPLColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(kSquareBorderRadius),
+                    bottomLeft: Radius.circular(kSquareBorderRadius),
                   ),
                 ),
                 child: Icon(

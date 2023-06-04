@@ -17,7 +17,7 @@ class SliderD extends StatelessWidget {
       builder: (context, state) {
         return Container(
           margin: const EdgeInsets.all(16),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
           width: MediaQuery.of(context).size.width - 30,
           decoration: state.isDarkMode
               ? CustomDecoration.watchDarkDeocoration
