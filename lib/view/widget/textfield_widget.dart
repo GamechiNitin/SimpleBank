@@ -18,10 +18,12 @@ class TextFormWidget extends StatelessWidget {
     this.maxLines,
     this.keyboardType,
     this.maxLength,
+    this.errorText,
   });
   final TextEditingController controller;
   final FocusNode focusNode;
   final String label;
+  final String? errorText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final Function(String)? onChanged;
@@ -52,14 +54,16 @@ class TextFormWidget extends StatelessWidget {
       style: Theme.of(context).inputDecorationTheme.labelStyle,
       decoration: InputDecoration(
         hintText: label,
+        errorMaxLines: 2,
+        errorText: errorText,
         prefixIcon: prefixIcon == null
             ? null
             : Container(
                 width: 50,
                 margin: const EdgeInsets.only(right: 12),
-                decoration: BoxDecoration(
-                  color: kPLColor,
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(kSquareBorderRadius),
                     bottomLeft: Radius.circular(kSquareBorderRadius),
                   ),

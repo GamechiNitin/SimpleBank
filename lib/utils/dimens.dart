@@ -1,7 +1,7 @@
 const double kBorderWidth = 0.4;
 const double kCardBorderWidth = 1.5;
 const double kBorderRadius = 10.0;
-const double kSquareBorderRadius = 3.0;
+const double kSquareBorderRadius = 5.0;
 const double kCardBorderRadius = 15.0;
 const double kTextFieldBorderRadius = 15.0;
 const double kAppBarElevation = 0;

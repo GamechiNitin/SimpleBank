@@ -68,7 +68,7 @@ class AppTheme {
       secondary: kWhiteColor,
       onSecondary: kWhiteColor,
       error: kBlackColor,
-      onError: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
+      onError: ColorScheme.fromSeed(seedColor: kErrorColor).onError,
       background: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
       onBackground: ColorScheme.fromSeed(seedColor: kPrimaryColor).background,
       surface: kPrimaryColor,
@@ -89,6 +89,11 @@ class AppTheme {
       hintStyle: TextStyle(
         fontSize: 14,
         color: kHintColor,
+        fontWeight: FontWeight.w400,
+      ),
+      errorStyle: GoogleFonts.poppins(
+        color: kErrorColor,
+        fontSize: 12,
         fontWeight: FontWeight.w400,
       ),
     ),
@@ -174,6 +179,11 @@ class AppTheme {
       hintStyle: TextStyle(
         fontSize: 14,
         color: kLightWhiteColor,
+        fontWeight: FontWeight.w400,
+      ),
+      errorStyle: GoogleFonts.poppins(
+        color: kErrorColor,
+        fontSize: 12,
         fontWeight: FontWeight.w400,
       ),
     ),

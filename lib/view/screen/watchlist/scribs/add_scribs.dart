@@ -1,31 +1,50 @@
+import 'dart:convert';
 import 'dart:developer';
-
-import 'package:simple_bank/utils/assets.dart';
+import 'package:flutter/services.dart';
+import 'package:simple_bank/data/local_db.dart';
+import 'package:simple_bank/utils/enum.dart';
+import 'package:simple_bank/utils/helper.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/home.dart';
 import 'package:simple_bank/view/widget/button_widget.dart';
+import 'package:simple_bank/view/widget/dropdown_widget.dart';
 import 'package:simple_bank/view/widget/textfield_widget.dart';
 
 class AddScribsPage extends StatefulWidget {
-  const AddScribsPage({super.key});
+  const AddScribsPage({super.key, required this.watchlistModel});
+  final WatchlistModel watchlistModel;
 
   @override
   State<AddScribsPage> createState() => _AddScribsPageState();
 }
 
 class _AddScribsPageState extends State<AddScribsPage> {
+  TextEditingController accountNumberController = TextEditingController();
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
   FocusNode mobileNumberFn = FocusNode();
-  FocusNode emailFn = FocusNode();
+  FocusNode accountNumberFn = FocusNode();
+  FocusNode otpFn = FocusNode();
   FocusNode passwordFn = FocusNode();
 
-  final _formKey = GlobalKey<FormState>();
+  WatchListCategories? selectedWatchListCategories;
 
   bool isLoading = false;
   bool isTermOfUse = false;
   bool obscureText = true;
+
+  int currentStep = 0;
+  int kLength = 3;
+  int? cancelStep;
+  String? selectedbank;
+  String? accountNumberError;
+  String? mobileNumberError;
+  String? otpNumberError;
+  List<String> reqourd = [];
+
+  final _formKey2 = GlobalKey<FormState>();
+  final _formKey3 = GlobalKey<FormState>();
 
   _notify() {
     if (mounted) setState(() {});
@@ -40,198 +59,442 @@ class _AddScribsPageState extends State<AddScribsPage> {
     super.dispose();
   }
 
+  void onStepContinue() {
+    switch (currentStep) {
+      case 0:
+        if (selectedWatchListCategories == null) {
+          Helper.toast(context, "Select the Scribs type");
+        } else if (selectedbank == null) {
+          Helper.toast(
+              context, "Select the ${selectedWatchListCategories?.name} type");
+        } else {
+          incrementStep();
+        }
+        break;
+      case 1:
+        if (_formKey2.currentState != null &&
+            _formKey2.currentState!.validate()) {
+          incrementStep();
+        }
+
+        break;
+      case 2:
+        if (_formKey3.currentState != null &&
+            _formKey3.currentState!.validate()) {
+          incrementStep();
+        }
+        break;
+      case 3:
+        if (currentStep == kLength) {
+          ScribsListModel data = ScribsListModel(
+            balance: "54546.00",
+            bankName: selectedbank?.split(" - ").last,
+            lastAmount: "325.00",
+            percenttage: "10.2",
+            shortBankName: selectedbank?.split(" - ").first,
+            type: selectedWatchListCategories?.name,
+          );
+          List<ScribsListModel> dataList = [];
+          dataList = watchList.elementAt(0).scribsList ?? [];
+          dataList.add(data);
+          log(dataList.length.toString());
+          watchList.elementAt(0).scribsList = dataList;
+          log(watchList.elementAt(0).scribsList?.length.toString() ?? "jfj");
+          // Navigator.pop(context);
+          gotoHomePage();
+          Helper.toast(context, "Done");
+          _notify();
+        }
+        break;
+      default:
+    }
+  }
+
+  void incrementStep() {
+    if (currentStep < kLength) {
+      currentStep += 1;
+      _notify();
+    }
+  }
+
+  void onCancelStep() {
+    if (currentStep != 0) {
+      currentStep -= 1;
+      _notify();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                right: 20,
-                top: kToolbarHeight + 30,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const DMWidget(textAlign: TextAlign.center),
-                  const SizedBox(height: 30),
-                  Image.asset(
-                    iSignUP,
-                    width: MediaQuery.of(context).size.width / 2,
+      appBar: AppBar(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.watchlistModel.watchListName ?? "",
+              style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
+                    fontSize: 12,
                   ),
-                  const SizedBox(height: 20),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Sign Up',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1,
-                            fontSize: 16,
-                          ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  widget.watchlistModel.scribsCount.toString(),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ),
+                  height: 4,
+                  width: 4,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kPrimaryColor,
+                  ),
+                ),
+                Text(
+                  widget.watchlistModel.watchListType ?? "",
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.info_rounded,
+            ),
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        children: [
+          Text(
+            "Add Scribs",
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontSize: size20,
+                ),
+          ),
+          Theme(
+            data: Theme.of(context).brightness == Brightness.light
+                ? AppTheme.lightTheme.copyWith(
+                    colorScheme: AppTheme.lightTheme.colorScheme.copyWith(
+                      primary: kBlackColor,
+                      background: kRedColor,
+                      secondary: kBlackColor,
+                    ),
+                  )
+                : AppTheme.darkTheme.copyWith(
+                    colorScheme: AppTheme.darkTheme.colorScheme.copyWith(
+                      primary: kPrimaryColor,
+                      background: kRedColor,
+                      secondary: kWhiteColor,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Form(
-                    key: _formKey,
+            child: Stepper(
+              type: StepperType.vertical,
+              currentStep: currentStep,
+              onStepContinue: onStepContinue,
+              onStepCancel: onCancelStep,
+              // margin: EdgeInsets.zero,
+
+              controlsBuilder: (context, details) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      if (currentStep <= kLength)
+                        Flexible(
+                          child: ButtonWidget(
+                            text: currentStep == kLength ? "Submit" : "Next",
+                            onTap: onStepContinue,
+                            margin: EdgeInsets.zero,
+                          ),
+                        ),
+                      if (currentStep != 0 && currentStep < kLength)
+                        const SizedBox(width: 16),
+                      if (currentStep != 0)
+                        TextButton(
+                          onPressed: onCancelStep,
+                          child: const Text("Back"),
+                        )
+                    ],
+                  ),
+                );
+              },
+              steps: [
+                Step(
+                  title: Text(
+                    "Scribs Type",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  isActive: currentStep >= 0,
+                  state: currentStep >= 0
+                      ? StepState.complete
+                      : StepState.disabled,
+                  content: Column(
+                    children: [
+                      DropdownWidget(
+                        hint: "Select Categorires",
+                        icon: Icons.corporate_fare_rounded,
+                        value: selectedWatchListCategories,
+                        items: WatchListCategories.values
+                            .map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(
+                                  e.name.toUpperCase(),
+                                  maxLines: 1,
+                                  style: Theme.of(context)
+                                      .inputDecorationTheme
+                                      .labelStyle,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (onChanged) async {
+                          selectedWatchListCategories = onChanged;
+                          String path = "assets/bank.json";
+                          final res = await rootBundle.loadString(path);
+                          final Map<String, dynamic> dataList =
+                              await jsonDecode(res);
+                          log(dataList.length.toString());
+                          log(dataList.keys.map((e) => e).toList().toString());
+
+                          selectedbank = null;
+                          reqourd.clear();
+                          dataList.forEach((key, value) {
+                            reqourd.add("$value - $key");
+                          });
+
+                          _notify();
+                        },
+                      ),
+                      if (reqourd.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: DropdownWidget(
+                            hint: "Select ${selectedWatchListCategories?.name}",
+                            icon: Icons.corporate_fare_rounded,
+                            value: selectedbank,
+                            items: reqourd
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(
+                                      e,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .inputDecorationTheme
+                                          .labelStyle
+                                          ?.copyWith(fontSize: size12),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (onChanged) {
+                              selectedbank = onChanged;
+                              _notify();
+                            },
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                Step(
+                  title: Text(
+                    "Account Info",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  isActive: currentStep >= 1,
+                  state: currentStep >= 1
+                      ? StepState.complete
+                      : StepState.disabled,
+                  content: Form(
+                    key: _formKey2,
                     child: Column(
                       children: [
+                        TextFormWidget(
+                          controller: accountNumberController,
+                          focusNode: accountNumberFn,
+                          label: 'Enter Account Number',
+                          prefixIcon: Icons.account_balance,
+                          keyboardType: TextInputType.number,
+                          errorText: accountNumberError,
+                          maxLength: 12,
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
+                              accountNumberError =
+                                  AppString.mEnterAccountNumber;
+                              return accountNumberError;
+                            } else if (val.length < 12) {
+                              accountNumberError =
+                                  AppString.mEnter12DigitAccountNumber;
+                              return accountNumberError;
+                            } else {
+                              accountNumberError = null;
+                              return accountNumberError;
+                            }
+                          },
+                          onChanged: (val) {
+                            if (val.isEmpty) {
+                              accountNumberError =
+                                  AppString.mEnterAccountNumber;
+                            } else if (val.length < 12) {
+                              accountNumberError =
+                                  AppString.mEnter12DigitAccountNumber;
+                            } else {
+                              accountNumberError = null;
+                            }
+                            _notify();
+                          },
+                          onEditingComplete: () {
+                            if (accountNumberController.text.isEmpty) {
+                              accountNumberError =
+                                  AppString.mEnterAccountNumber;
+                            } else if (accountNumberController.text.length <
+                                12) {
+                              accountNumberError =
+                                  AppString.mEnter12DigitAccountNumber;
+                            } else {
+                              accountNumberError = null;
+                            }
+                            _notify();
+                          },
+                        ),
+                        const SizedBox(height: 16),
                         TextFormWidget(
                           controller: mobileNumberController,
                           focusNode: mobileNumberFn,
                           label: 'Enter Mobile Number',
                           prefixIcon: Icons.smartphone_rounded,
+                          keyboardType: TextInputType.number,
+                          errorText: mobileNumberError,
+                          maxLength: 10,
                           validator: (val) {
                             log(val.toString());
-                            if (val == null || val == '') {
-                              return 'Enter the mobile number';
+                            if (val == null || val.isEmpty) {
+                              return mobileNumberError =
+                                  AppString.mEnterMobileNumber;
+                            } else if (val.length < 10) {
+                              return mobileNumberError =
+                                  AppString.mEnter10DigitMobileNumber;
+                            } else {
+                              return mobileNumberError = null;
                             }
-                            return null;
                           },
                           onChanged: (val) {
-                           
-                            log(val);
-                            _notify();
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormWidget(
-                          controller: emailController,
-                          focusNode: emailFn,
-                          label: 'Enter email ',
-                          prefixIcon: Icons.email,
-                          onChanged: (val) {
-                            log(val);
-                            _notify();
-                          },
-                          validator: (val) {
-                            log(val.toString());
-                            if (val == null || val == '') {
-                              return 'Enter the email';
-                            } else if (!val.contains('@')) {
-                              return 'Enter valid the email';
+                            if (val.isEmpty) {
+                              mobileNumberError = AppString.mEnterMobileNumber;
+                            } else if (val.length < 10) {
+                              mobileNumberError =
+                                  AppString.mEnter10DigitMobileNumber;
+                            } else {
+                              mobileNumberError = null;
                             }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormWidget(
-                          controller: passwordController,
-                          focusNode: passwordFn,
-                          label: 'Create Password',
-                          prefixIcon: Icons.lock,
-                          maxLines: 1,
-                          suffixIcon: obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          obscureText: obscureText,
-                          onSuffixIxonTap: () {
-                            obscureText = !obscureText;
                             _notify();
                           },
-                          validator: (val) {
-                            if (val == null || val == '') {
-                              return 'Create the Password';
-                            } else if (val.length < 6) {
-                              return 'Create the Six Password';
+                          onEditingComplete: () {
+                            if (mobileNumberController.text.isEmpty) {
+                              mobileNumberError = AppString.mEnterMobileNumber;
+                            } else if (mobileNumberController.text.length <
+                                10) {
+                              mobileNumberError =
+                                  AppString.mEnter10DigitMobileNumber;
+                            } else {
+                              mobileNumberError = null;
                             }
-                            return null;
-                          },
-                          onChanged: (val) {
-                            log(val);
                             _notify();
                           },
                         ),
-                        const SizedBox(height: 20),
-                        GestureDetector(
-                          onTap: () {
-                            // gotoHomePage();
-                          },
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 20,
-                                width: 20,
-                                margin: const EdgeInsets.only(right: 8),
-                                child: Checkbox(
-                                  value: isTermOfUse,
-                                  onChanged: (onChanged) {
-                                    log(onChanged.toString());
-                                    if (onChanged != null) {
-                                      isTermOfUse = onChanged;
-                                      _notify();
-                                    }
-                                  },
-                                ),
-                              ),
-                              RichText(
-                                textAlign: TextAlign.start,
-                                text: TextSpan(
-                                  text: "By procedding, I accept\nDigital",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        fontSize: 12,
-                                      ),
-                                  children: [
-                                    TextSpan(
-                                      text: "Money",
-                                      style: TextStyle(
-                                        fontSize: size12,
-                                        fontWeight: FontWeight.w500,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                    const TextSpan(
-                                      text: ' T&C ',
-                                      style: TextStyle(
-                                        fontSize: size12,
-                                        color: kBlueColor,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: ' and ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            fontSize: 12,
-                                          ),
-                                    ),
-                                    const TextSpan(
-                                      text: ' Privacy Policy.',
-                                      style: TextStyle(
-                                        fontSize: size12,
-                                        color: kBlueColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-                        ButtonWidget(
-                          text: 'Create Account',
-                          onTap: () {
-                            if (_formKey.currentState != null &&
-                                _formKey.currentState!.validate()) {
-                              // signUpApiCall();
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+                Step(
+                  title: Text(
+                    "Verify Account",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  isActive: currentStep >= 2,
+                  state: currentStep >= 2
+                      ? StepState.complete
+                      : StepState.disabled,
+                  content: Form(
+                    key: _formKey3,
+                    child: TextFormWidget(
+                      controller: otpController,
+                      focusNode: otpFn,
+                      label: 'Enter otp ',
+                      keyboardType: TextInputType.number,
+                      prefixIcon: Icons.password,
+                      maxLength: 6,
+                      errorText: otpNumberError,
+                      validator: (val) {
+                        log(val.toString());
+                        if (val == null || val.isEmpty) {
+                          return otpNumberError = AppString.mOTPNumber;
+                        } else if (val.length < 6) {
+                          return otpNumberError =
+                              AppString.mEnter6DigitOTPNumber;
+                        } else {
+                          return otpNumberError = null;
+                        }
+                      },
+                      onChanged: (val) {
+                        if (val.isEmpty) {
+                          otpNumberError = AppString.mOTPNumber;
+                        } else if (val.length < 6) {
+                          otpNumberError = AppString.mEnter6DigitOTPNumber;
+                        } else {
+                          otpNumberError = null;
+                        }
+                        log(val);
+                        _notify();
+                      },
+                      onEditingComplete: () {
+                        if (otpController.text.isEmpty) {
+                          otpNumberError = AppString.mOTPNumber;
+                        } else if (otpController.text.length < 6) {
+                          otpNumberError = AppString.mEnter6DigitOTPNumber;
+                        } else {
+                          otpNumberError = null;
+                        }
+                        _notify();
+                      },
+                    ),
+                  ),
+                ),
+                Step(
+                  title: Text(
+                    "Submit",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  isActive: currentStep >= 3,
+                  state: currentStep >= 3
+                      ? StepState.complete
+                      : StepState.disabled,
+                  content: const SizedBox(),
+                )
+              ],
             ),
           ),
         ],

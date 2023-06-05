@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:simple_bank/data/local_db.dart';
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/watchlist/scribs/add_scribs.dart';
 import 'package:simple_bank/view/screen/watchlist/scribslist_details/scribs_details_screen.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist/component/grid_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
@@ -12,6 +15,75 @@ class BankTab extends StatefulWidget {
 }
 
 class _BankTabState extends State<BankTab> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      children: [
+        if (watchList.isNotEmpty &&
+            watchList.elementAt(0).scribsList != null &&
+            watchList.elementAt(0).scribsList!.isNotEmpty)
+          const BankTabView()
+        else
+          const NoDataBankTab()
+      ],
+    );
+  }
+}
+
+class NoDataBankTab extends StatelessWidget {
+  const NoDataBankTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => AddScribsPage(
+              watchlistModel: watchList.first,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        color: kTransparentColor,
+        alignment: Alignment.bottomCenter,
+        height: MediaQuery.of(context).size.height / 3,
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: "Add",
+            style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
+                  fontSize: 35,
+                  height: 1,
+                ),
+            children: [
+              TextSpan(
+                text: "\nScribs ",
+                style: TextStyle(
+                  fontSize: 48,
+                  height: 1,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BankTabView extends StatefulWidget {
+  const BankTabView({super.key});
+
+  @override
+  State<BankTabView> createState() => _BankTabViewState();
+}
+
+class _BankTabViewState extends State<BankTabView> {
   bool isGridView = false;
 
   _notify() {
@@ -20,8 +92,7 @@ class _BankTabState extends State<BankTab> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+    return Column(
       children: [
         const LineChartWidget(),
         Container(
@@ -87,7 +158,7 @@ class _BankTabState extends State<BankTab> {
             shrinkWrap: true,
             padding: const EdgeInsets.all(16),
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: scribsList.length,
+            itemCount: watchList.elementAt(0).scribsList?.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               mainAxisSpacing: 10,
@@ -96,17 +167,21 @@ class _BankTabState extends State<BankTab> {
             itemBuilder: (context, index) {
               return GridComponent(
                 isSelected: index == 0,
-                shortName: scribsList[index].shortBankName,
-                fullName: scribsList[index].bankName,
-                balance: scribsList[index].balance,
-                lastTransaction: scribsList[index].lastAmount,
-                percentage: scribsList[index].percenttage,
+                shortName:
+                    watchList.elementAt(0).scribsList![index].shortBankName,
+                fullName: watchList.elementAt(0).scribsList![index].bankName,
+                balance: watchList.elementAt(0).scribsList![index].balance,
+                lastTransaction:
+                    watchList.elementAt(0).scribsList![index].lastAmount,
+                percentage:
+                    watchList.elementAt(0).scribsList![index].percenttage,
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => ScribsListDetailScreen(
-                        scribsListModel: scribsList[index],
-                        scribsList: scribsList,
+                        scribsListModel:
+                            watchList.elementAt(0).scribsList![index],
+                        scribsList: watchList.elementAt(0).scribsList!,
                       ),
                     ),
                   );
@@ -116,7 +191,7 @@ class _BankTabState extends State<BankTab> {
           )
         else
           ListView.builder(
-            itemCount: scribsList.length,
+            itemCount: watchList.elementAt(0).scribsList?.length,
             shrinkWrap: true,
             padding: const EdgeInsets.only(
               top: 4,
@@ -129,24 +204,28 @@ class _BankTabState extends State<BankTab> {
               return WatchlistComponent(
                 isSelected: index == 0,
                 imageUrl: "https://picsum.photos/200",
-                shortName: scribsList[index].shortBankName,
-                fullName: scribsList[index].bankName,
-                balance: scribsList[index].balance,
-                lastTransaction: scribsList[index].lastAmount,
-                percentage: scribsList[index].percenttage,
+                shortName:
+                    watchList.elementAt(0).scribsList![index].shortBankName,
+                fullName: watchList.elementAt(0).scribsList![index].bankName,
+                balance: watchList.elementAt(0).scribsList![index].balance,
+                lastTransaction:
+                    watchList.elementAt(0).scribsList![index].lastAmount,
+                percentage:
+                    watchList.elementAt(0).scribsList![index].percenttage,
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => ScribsListDetailScreen(
-                        scribsListModel: scribsList[index],
-                        scribsList: scribsList,
+                        scribsListModel:
+                            watchList.elementAt(0).scribsList![index],
+                        scribsList: watchList.elementAt(0).scribsList!,
                       ),
                     ),
                   );
                 },
               );
             },
-          ),
+          )
       ],
     );
   }

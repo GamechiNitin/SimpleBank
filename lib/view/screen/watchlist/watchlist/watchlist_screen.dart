@@ -1,8 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/data/local_db.dart';
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/watchlist/scribs/add_scribs.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist/bank_tab/bank_tab.dart';
+import 'package:simple_bank/view/widget/dialog_box/dialog_box.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
+import 'package:simple_bank/view/widget/two_button_widget.dart';
 import 'package:simple_bank/view/widget/watchlist_dropdown.dart';
 
 class WatchListScreen extends StatefulWidget {
@@ -123,7 +126,10 @@ class _WatchListScreenState extends State<WatchListScreen>
                                           ),
                                           const SizedBox(width: 8),
                                           IconButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              DialogBox.addWatchListDialog(
+                                                  context);
+                                            },
                                             icon: Icon(
                                               Icons.add_circle_outline,
                                               // size: 25,
@@ -176,11 +182,50 @@ class _WatchListScreenState extends State<WatchListScreen>
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const NoWatchListScreen(),
-                        ),
-                      );
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 30,
+                                horizontal: 20,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "Create",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          fontSize: size14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  const SizedBox(height: 30),
+                                  TwoButtonWidget(
+                                    onTap2: () {
+                                      Navigator.pop(context);
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => AddScribsPage(
+                                            watchlistModel: watchList.first,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      DialogBox.addWatchListDialog(context);
+                                    },
+                                    text: "WatchList",
+                                    text2: "Scribs",
+                                  ),
+                                ],
+                              ),
+                            );
+                          });
                     },
                     icon: Icon(
                       Icons.add_circle_outline,
