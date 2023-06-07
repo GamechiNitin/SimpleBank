@@ -8,6 +8,8 @@ import 'package:simple_bank/view/widget/radio_widget.dart';
 import 'package:simple_bank/view/widget/two_button_widget.dart';
 import 'package:simple_bank/view/widget/watchlist_dropdown.dart';
 
+import 'wallets_tab/wallets_tab.dart';
+
 class WatchListScreen extends StatefulWidget {
   const WatchListScreen({super.key});
 
@@ -279,11 +281,11 @@ class _WatchListScreenState extends State<WatchListScreen>
               // padding: const EdgeInsets.symmetric(horizontal: 12),
               tabs: const [
                 Text("Bank"),
+                Text("Wallets"),
                 Text("Stock"),
                 Text("Funds"),
                 Text("Crypto"),
                 Text("Coins"),
-                Text("Wallets"),
               ],
             ),
           ),
@@ -293,11 +295,11 @@ class _WatchListScreenState extends State<WatchListScreen>
         controller: controller,
         children: const [
           BankTab(),
+          WalletsTab(),
           Center(child: Text("Stock")),
           Center(child: Text("Funds")),
           Center(child: Text("Crypto")),
           Center(child: Text("Coins")),
-          Center(child: Text("Wallets")),
         ],
       ),
     );
