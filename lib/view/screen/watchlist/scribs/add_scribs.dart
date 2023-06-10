@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
+import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:simple_bank/data/local_db.dart';
+import 'package:simple_bank/model/wallets_model.dart';
 import 'package:simple_bank/utils/enum.dart';
 import 'package:simple_bank/utils/helper.dart';
 import 'package:simple_bank/utils/import.dart';
@@ -37,11 +38,12 @@ class _AddScribsPageState extends State<AddScribsPage> {
   int currentStep = 0;
   int kLength = 3;
   int? cancelStep;
-  String? selectedbank;
+  String? selectedbrand;
   String? accountNumberError;
   String? mobileNumberError;
   String? otpNumberError;
-  List<String> reqourd = [];
+  List<String> brandList = [];
+  List<String> wallets = [];
 
   final _formKey2 = GlobalKey<FormState>();
   final _formKey3 = GlobalKey<FormState>();
@@ -64,7 +66,7 @@ class _AddScribsPageState extends State<AddScribsPage> {
       case 0:
         if (selectedWatchListCategories == null) {
           Helper.toast(context, "Select the Scribs type");
-        } else if (selectedbank == null) {
+        } else if (selectedbrand == null) {
           Helper.toast(
               context, "Select the ${selectedWatchListCategories?.name} type");
         } else {
@@ -86,24 +88,39 @@ class _AddScribsPageState extends State<AddScribsPage> {
         break;
       case 3:
         if (currentStep == kLength) {
-          ScribsListModel data = ScribsListModel(
-            balance: "54546.00",
-            bankName: selectedbank?.split(" - ").last,
-            lastAmount: "325.00",
-            percenttage: "10.2",
-            shortBankName: selectedbank?.split(" - ").first,
-            type: selectedWatchListCategories?.name,
-          );
-          List<ScribsListModel> dataList = [];
-          dataList = watchList.elementAt(0).scribsList ?? [];
-          dataList.add(data);
-          log(dataList.length.toString());
-          watchList.elementAt(0).scribsList = dataList;
-          log(watchList.elementAt(0).scribsList?.length.toString() ?? "jfj");
-          // Navigator.pop(context);
-          gotoHomePage();
-          Helper.toast(context, "Done");
-          _notify();
+          if (selectedWatchListCategories?.name ==
+              WatchListCategories.wallets.name) {
+            WalletModel data = WalletModel(
+              balance: "54546.00",
+              walletType: selectedbrand,
+              userName: "Nitin Gamechi",
+              id: int.parse(accountNumberController.text.trim()),
+            );
+            List<WalletModel> dataList = [];
+            dataList = watchList.elementAt(0).walletModel ?? [];
+            dataList.add(data);
+            watchList.elementAt(0).walletModel = dataList;
+            gotoHomePage();
+            Helper.toast(context, "Done");
+            _notify();
+          } else {
+            ScribsListModel data = ScribsListModel(
+              balance: "54546.00",
+              bankName: selectedbrand?.split(" - ").last,
+              lastAmount: "325.00",
+              percenttage: "10.2",
+              shortBankName: selectedbrand?.split(" - ").first,
+              type: selectedWatchListCategories?.name,
+            );
+            List<ScribsListModel> dataList = [];
+            dataList = watchList.elementAt(0).scribsList ?? [];
+            dataList.add(data);
+            watchList.elementAt(0).scribsList = dataList;
+            // Navigator.pop(context);
+            gotoHomePage();
+            Helper.toast(context, "Done");
+            _notify();
+          }
         }
         break;
       default:
@@ -264,37 +281,45 @@ class _AddScribsPageState extends State<AddScribsPage> {
                                   maxLines: 1,
                                   style: Theme.of(context)
                                       .inputDecorationTheme
-                                      .labelStyle,
+                                      .labelStyle
+                                      ?.copyWith(fontSize: size12),
                                 ),
                               ),
                             )
                             .toList(),
                         onChanged: (onChanged) async {
                           selectedWatchListCategories = onChanged;
-                          String path = "assets/bank.json";
-                          final res = await rootBundle.loadString(path);
-                          final Map<String, dynamic> dataList =
-                              await jsonDecode(res);
-                          log(dataList.length.toString());
-                          log(dataList.keys.map((e) => e).toList().toString());
+                          if (selectedWatchListCategories?.name ==
+                              WatchListCategories.wallets.name) {
+                            selectedbrand = null;
+                            brandList.clear();
+                            brandList.addAll(
+                                WalletsEnum.values.map((e) => e.formatedName));
+                          }
+                          if (selectedWatchListCategories?.name ==
+                              WatchListCategories.bank.name) {
+                            String path = "assets/bank.json";
+                            final res = await rootBundle.loadString(path);
+                            final Map<String, dynamic> dataList =
+                                await jsonDecode(res);
 
-                          selectedbank = null;
-                          reqourd.clear();
-                          dataList.forEach((key, value) {
-                            reqourd.add("$value - $key");
-                          });
-
+                            selectedbrand = null;
+                            brandList.clear();
+                            dataList.forEach((key, value) {
+                              brandList.add("$value - $key");
+                            });
+                          }
                           _notify();
                         },
                       ),
-                      if (reqourd.isNotEmpty)
+                      if (brandList.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
                           child: DropdownWidget(
                             hint: "Select ${selectedWatchListCategories?.name}",
                             icon: Icons.corporate_fare_rounded,
-                            value: selectedbank,
-                            items: reqourd
+                            value: selectedbrand,
+                            items: brandList
                                 .map(
                                   (e) => DropdownMenuItem(
                                     value: e,
@@ -311,7 +336,7 @@ class _AddScribsPageState extends State<AddScribsPage> {
                                 )
                                 .toList(),
                             onChanged: (onChanged) {
-                              selectedbank = onChanged;
+                              selectedbrand = onChanged;
                               _notify();
                             },
                           ),
@@ -390,7 +415,6 @@ class _AddScribsPageState extends State<AddScribsPage> {
                           errorText: mobileNumberError,
                           maxLength: 10,
                           validator: (val) {
-                            log(val.toString());
                             if (val == null || val.isEmpty) {
                               return mobileNumberError =
                                   AppString.mEnterMobileNumber;
@@ -449,7 +473,6 @@ class _AddScribsPageState extends State<AddScribsPage> {
                       maxLength: 6,
                       errorText: otpNumberError,
                       validator: (val) {
-                        log(val.toString());
                         if (val == null || val.isEmpty) {
                           return otpNumberError = AppString.mOTPNumber;
                         } else if (val.length < 6) {
@@ -467,7 +490,6 @@ class _AddScribsPageState extends State<AddScribsPage> {
                         } else {
                           otpNumberError = null;
                         }
-                        log(val);
                         _notify();
                       },
                       onEditingComplete: () {

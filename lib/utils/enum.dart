@@ -15,6 +15,7 @@ enum WalletsEnum {
   paypal(formatedName: "PayPal"),
   paytm(formatedName: "Paytm"),
   cred(formatedName: "Cred"),
+  apple(formatedName: "Apple Pay"),
   digitalMoney(formatedName: "Digital Money");
 
   const WalletsEnum({
@@ -24,23 +25,30 @@ enum WalletsEnum {
   final String formatedName;
 }
 
-extension WalletsGradient on WalletsEnum {
+extension WalletsGradient on String {
   List<Color>? get color {
     switch (this) {
-      case WalletsEnum.amazon:
+      case "Amazon Pay":
         return [const Color(0xffE5A663), kdeepOrangeColor.withOpacity(0.8)];
-      case WalletsEnum.paypal:
+      case "PayPal":
         return [ktealColor, kBlueColor];
-      case WalletsEnum.phonePe:
+      case "Phone Pe":
         return [kpurpleAccentColor, kdeepPurpleAccentColor];
-      case WalletsEnum.paytm:
+      case "Paytm":
         return [kBlueAccentColor, kBlueColor];
-      case WalletsEnum.cred:
-        return [Colors.black12, Colors.black38];
-      case WalletsEnum.digitalMoney:
-        return null;
+      case "Cred":
+        return [Colors.black38, Colors.black87];
+      case "Apple Pay":
+        return [kWhiteColor.withOpacity(0.2), kWhiteColor.withOpacity(0.5)];
+      case "Digital Money":
+        return [kPrimaryColor, kBlueAccentColor.withOpacity(0.7)];
       default:
         return null;
     }
   }
+}
+
+extension Res on String {
+  String get addSpace =>
+      replaceAllMapped(RegExp(r".{4}"), (match) => "${match.group(0)} ");
 }

@@ -1,3 +1,5 @@
+import 'package:simple_bank/data/local_db.dart';
+import 'package:simple_bank/model/wallets_model.dart';
 import 'package:simple_bank/utils/enum.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist/wallets_tab/component/wallet_component.dart';
@@ -7,60 +9,32 @@ class WalletsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DarkModeCubit, DarkModeInitialState>(
-      builder: (context, state) {
-        return ListView(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: 90,
-          ),
-          children: [
-            WalletCardComponent(
-              walletType: WalletsEnum.digitalMoney.formatedName,
-              name: "Nitin Gamechi",
-              balance: "5000.00",
-              id: "145236468469",
-            ),
-            WalletCardComponent(
-              colors: WalletsEnum.paypal.color,
-              walletType: WalletsEnum.paypal.formatedName,
-              name: "Nitin Gamechi",
-              balance: "5000.00",
-              id: "145236468469",
-            ),
-            WalletCardComponent(
-              walletType: WalletsEnum.amazon.formatedName,
-              name: "Nitin Gamechi",
-              balance: "5000.00",
-              id: "145236468469",
-              colors: WalletsEnum.amazon.color,
-            ),
-            WalletCardComponent(
-              walletType: WalletsEnum.phonePe.formatedName,
-              name: "Nitin Gamechi",
-              balance: "5,96,300.00",
-              id: "145236468469",
-              colors: WalletsEnum.phonePe.color,
-            ),
-            WalletCardComponent(
-              walletType: WalletsEnum.cred.formatedName,
-              name: "Nitin Gamechi",
-              balance: "5,96,300.00",
-              id: "145236468469",
-              colors: WalletsEnum.cred.color,
-            ),
-            WalletCardComponent(
-              walletType: WalletsEnum.paytm.formatedName,
-              name: "Nitin Gamechi",
-              balance: "5,96,300.00",
-              id: "145236468469",
-              colors: WalletsEnum.paytm.color,
-            ),
-          ],
-        );
-      },
-    );
+    if (watchList.isNotEmpty &&
+        watchList.elementAt(0).walletModel != null &&
+        watchList.elementAt(0).walletModel!.isNotEmpty) {
+      List<WalletModel> walletModel = watchList.elementAt(0).walletModel!;
+      return ListView.builder(
+        itemCount: walletModel.length,
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          top: 20,
+          bottom: 90,
+        ),
+        itemBuilder: (context, index) {
+          return WalletCardComponent(
+              colors: walletModel[index].walletType?.color,
+              walletType: walletModel[index].walletType ?? "",
+              name: walletModel[index].userName ?? "",
+              balance: walletModel[index].balance ?? "",
+              id: "${walletModel[index].id}".addSpace
+              // id: walletModel[index].id.toString().replaceAllMapped(
+              //     RegExp(r".{5}"), (match) => "${match.group(0)}"),
+              );
+        },
+      );
+    } else {
+      return Container();
+    }
   }
 }
