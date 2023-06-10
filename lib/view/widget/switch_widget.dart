@@ -11,8 +11,8 @@ class SwitchWidget extends StatelessWidget {
       value: value,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       activeColor: kPrimaryColor,
-      inactiveThumbColor: kWhiteColor,
-      inactiveTrackColor: kPinkAccentColor,
+      inactiveThumbColor: kRedColor,
+      inactiveTrackColor: kPinkAccentColor.withOpacity(0.3),
       trackOutlineColor: const MaterialStatePropertyAll(kTransparentColor),
       onChanged: onChanged,
     );

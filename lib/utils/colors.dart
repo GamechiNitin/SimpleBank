@@ -39,3 +39,5 @@ Color kpurpleAccentColor = Colors.purpleAccent.withOpacity(kOpacity);
 const Color kDarkGreyColor = Color(0xFF121212);
 const Color kDarkGrey1Color = Color(0xFF1F1A24);
 const Color kDarkGrey2Color = Color(0xFF332940);
+const Color kDarkGrey3Color = Color(0xff080e2c);
+Color kDarkGrey4Color = const Color(0xff080e2c).withOpacity(0.5);

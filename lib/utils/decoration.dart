@@ -77,7 +77,7 @@ class CustomDecoration {
     ],
   );
   static Decoration cardDarkDeocoration = BoxDecoration(
-    color: kDarkGrey1Color,
+    color: kDarkGrey4Color,
     borderRadius: BorderRadius.circular(10),
     boxShadow: const [
       BoxShadow(

@@ -85,9 +85,8 @@ class AccountCardComponent extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.only(left: 12, right: 12, top: 8),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.shadow,
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(kBorderRadius),
                     bottomRight: Radius.circular(kBorderRadius),
                   ),
