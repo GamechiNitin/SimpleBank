@@ -1,13 +1,11 @@
+import 'package:simple_bank/utils/import.dart';
 import 'package:flutter/gestures.dart';
 import 'package:simple_bank/data/local_db.dart';
-import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/scribs/add_scribs.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist/bank_tab/bank_tab.dart';
 import 'package:simple_bank/view/widget/dialog_box/dialog_box.dart';
 import 'package:simple_bank/view/widget/radio_widget.dart';
 import 'package:simple_bank/view/widget/two_button_widget.dart';
 import 'package:simple_bank/view/widget/watchlist_dropdown.dart';
-
 import 'wallets_tab/wallets_tab.dart';
 
 class WatchListScreen extends StatefulWidget {
@@ -208,17 +206,12 @@ class _WatchListScreenState extends State<WatchListScreen>
                                   const SizedBox(height: 30),
                                   TwoButtonWidget(
                                     onTap2: () {
-                                      Navigator.pop(context);
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) => AddScribsPage(
-                                            watchlistModel: watchList.first,
-                                          ),
-                                        ),
-                                      );
+                                      GoRouter.of(context).pop();
+                                      context.pushNamed(
+                                          RouteEnum.addscribs.name,
+                                          extra: watchList.first);
                                     },
                                     onTap: () {
-                                      Navigator.pop(context);
                                       DialogBox.addWatchListDialog(context);
                                     },
                                     text: "WatchList",

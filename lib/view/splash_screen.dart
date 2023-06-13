@@ -1,8 +1,5 @@
 import 'dart:async';
-
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/authentication/login_screen.dart';
-import 'package:simple_bank/view/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,27 +16,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> initTimer() async {
-    Timer(const Duration(seconds: 1), gotoHome);
+    Timer(const Duration(seconds: 1), gotoLogInScreen);
   }
 
   void gotoLogInScreen() {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LogInScreen(),
-      ),
-      (route) => false,
-    );
+    GoRouter.of(context).pushReplacementNamed(RouteEnum.login.name);
   }
 
   void gotoHome() {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const Home(),
-      ),
-      (route) => false,
-    );
+    GoRouter.of(context).pushReplacementNamed(RouteEnum.home.name);
   }
 
   @override

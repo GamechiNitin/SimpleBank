@@ -1,10 +1,6 @@
 import 'dart:developer';
 
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/authentication/signup_screen.dart';
-import 'package:simple_bank/view/home.dart';
-import 'package:simple_bank/view/widget/button_widget.dart';
-import 'package:simple_bank/view/widget/textfield_widget.dart';
 
 class FeedbackScreen extends StatefulWidget {
   const FeedbackScreen({super.key});

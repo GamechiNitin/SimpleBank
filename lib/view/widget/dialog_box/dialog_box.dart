@@ -2,9 +2,6 @@ import 'dart:developer';
 
 import 'package:simple_bank/data/local_db.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/home.dart';
-import 'package:simple_bank/view/widget/button_widget.dart';
-import 'package:simple_bank/view/widget/textfield_widget.dart';
 
 class DialogBox {
   static addWatchListDialog(BuildContext context) {
@@ -78,12 +75,10 @@ class DialogBox {
                   typeController.clear();
                   watchListFn.unfocus();
                   typeFn.unfocus();
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => const Home(),
-                    ),
-                    (route) => false,
-                  );
+                  GoRouter.of(context).pop();
+
+                  GoRouter.of(context)
+                      .pushReplacementNamed(RouteEnum.home.name);
                 }
               },
             ),

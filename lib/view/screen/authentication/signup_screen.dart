@@ -1,10 +1,5 @@
 import 'dart:developer';
-
-import 'package:simple_bank/utils/assets.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/home.dart';
-import 'package:simple_bank/view/widget/button_widget.dart';
-import 'package:simple_bank/view/widget/textfield_widget.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

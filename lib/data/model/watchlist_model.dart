@@ -1,4 +1,4 @@
-import 'package:simple_bank/model/scribs_model.dart';
+import 'package:simple_bank/data/model/scribs_model.dart';
 
 import 'wallets_model.dart';
 

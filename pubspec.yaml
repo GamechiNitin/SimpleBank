@@ -35,6 +35,9 @@ dependencies:
   flutter_bloc: ^8.1.2
   shared_preferences: ^2.0.17
 
+  # Routing
+  go_router: ^8.0.1
+
   # Chart Dependencies
   fl_chart: ^0.61.0
   

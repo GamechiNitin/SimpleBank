@@ -1,8 +1,6 @@
-import 'dart:ui';
 
 import 'package:simple_bank/data/local_db.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/watchlist/scribs/add_scribs.dart';
 import 'package:simple_bank/view/screen/watchlist/scribslist_details/scribs_details_screen.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist/component/grid_component.dart';
 import 'package:simple_bank/view/widget/chart/line_chart.dart';
@@ -38,13 +36,7 @@ class NoDataBankTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => AddScribsPage(
-              watchlistModel: watchList.first,
-            ),
-          ),
-        );
+        context.pushNamed(RouteEnum.addscribs.name, extra: watchList.first);
       },
       child: Container(
         color: kTransparentColor,

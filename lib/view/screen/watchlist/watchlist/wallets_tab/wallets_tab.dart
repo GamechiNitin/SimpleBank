@@ -1,5 +1,5 @@
 import 'package:simple_bank/data/local_db.dart';
-import 'package:simple_bank/model/wallets_model.dart';
+import 'package:simple_bank/data/model/wallets_model.dart';
 import 'package:simple_bank/utils/enum.dart';
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/watchlist/watchlist/wallets_tab/component/wallet_component.dart';

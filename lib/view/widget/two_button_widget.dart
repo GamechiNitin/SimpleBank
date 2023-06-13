@@ -1,5 +1,4 @@
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/widget/button_widget.dart';
 
 class TwoButtonWidget extends StatelessWidget {
   const TwoButtonWidget({

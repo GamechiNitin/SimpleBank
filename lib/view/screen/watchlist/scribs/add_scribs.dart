@@ -1,15 +1,11 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:simple_bank/data/local_db.dart';
-import 'package:simple_bank/model/wallets_model.dart';
+import 'package:simple_bank/data/model/wallets_model.dart';
 import 'package:simple_bank/utils/enum.dart';
 import 'package:simple_bank/utils/helper.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/home.dart';
-import 'package:simple_bank/view/widget/button_widget.dart';
 import 'package:simple_bank/view/widget/dropdown_widget.dart';
-import 'package:simple_bank/view/widget/textfield_widget.dart';
 
 class AddScribsPage extends StatefulWidget {
   const AddScribsPage({super.key, required this.watchlistModel});
@@ -100,7 +96,7 @@ class _AddScribsPageState extends State<AddScribsPage> {
             dataList = watchList.elementAt(0).walletModel ?? [];
             dataList.add(data);
             watchList.elementAt(0).walletModel = dataList;
-            gotoHomePage();
+            GoRouter.of(context).goNamed(RouteEnum.home.name);
             Helper.toast(context, "Done");
             _notify();
           } else {
@@ -117,7 +113,7 @@ class _AddScribsPageState extends State<AddScribsPage> {
             dataList.add(data);
             watchList.elementAt(0).scribsList = dataList;
             // Navigator.pop(context);
-            gotoHomePage();
+            GoRouter.of(context).goNamed(RouteEnum.home.name);
             Helper.toast(context, "Done");
             _notify();
           }
@@ -521,15 +517,6 @@ class _AddScribsPageState extends State<AddScribsPage> {
           ),
         ],
       ),
-    );
-  }
-
-  gotoHomePage() {
-    return Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => const Home(),
-      ),
-      (route) => false,
     );
   }
 }

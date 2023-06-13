@@ -18,13 +18,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DarkModeCubit, DarkModeInitialState>(
       builder: (context, state) {
-        return MaterialApp(
+        return MaterialApp.router(
           title: 'Simple Bank',
           themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
           darkTheme: AppTheme.darkTheme,
           theme: AppTheme.lightTheme,
           debugShowCheckedModeBanner: false,
-          home: const SplashScreen(),
+          routerConfig: DmRoutes.router,
         );
       },
     );

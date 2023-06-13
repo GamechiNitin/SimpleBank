@@ -1,11 +1,6 @@
 import 'dart:developer';
-
-import 'package:simple_bank/utils/assets.dart';
 import 'package:simple_bank/utils/import.dart';
-import 'package:simple_bank/view/screen/authentication/signup_screen.dart';
-import 'package:simple_bank/view/home.dart';
-import 'package:simple_bank/view/widget/button_widget.dart';
-import 'package:simple_bank/view/widget/textfield_widget.dart';
+
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -38,26 +33,6 @@ class _LogInScreenState extends State<LogInScreen> {
     super.dispose();
   }
 
-  void gotoHomeScreen() {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const Home(),
-      ),
-      (route) => false,
-    );
-  }
-
-  void gotoSignUpPage() {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SignUpPage(),
-      ),
-      (route) => false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +43,7 @@ class _LogInScreenState extends State<LogInScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
-              onTap: () {
-                gotoHomeScreen();
-              },
+              onTap: () => context.goNamed(RouteEnum.home.name),
               child: const Text(
                 'Skip',
                 style: TextStyle(
@@ -170,9 +143,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 const SizedBox(height: 20),
                 GestureDetector(
-                  onTap: () {
-                    gotoSignUpPage();
-                  },
+                  onTap: () => context.pushNamed(RouteEnum.signup.name),
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
