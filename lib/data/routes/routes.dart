@@ -1,4 +1,5 @@
 import 'package:simple_bank/utils/import.dart';
+import 'package:simple_bank/view/screen/more/user/update_user.dart';
 
 enum RouteEnum {
   initial,
@@ -7,7 +8,8 @@ enum RouteEnum {
   watchlist,
   login,
   signup,
-  addscribs;
+  addscribs,
+  updateProfile;
 }
 
 class DmRoutes {
@@ -65,6 +67,15 @@ class DmRoutes {
             child: AddScribsPage(
               watchlistModel: state.extra as WatchlistModel,
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/${RouteEnum.updateProfile.name}',
+        name: RouteEnum.updateProfile.name,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: UpdateUserScreen(),
           );
         },
       ),

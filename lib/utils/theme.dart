@@ -39,10 +39,10 @@ class AppTheme {
     checkboxTheme: CheckboxThemeData(
       fillColor: MaterialStateProperty.resolveWith<Color>(
         (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
-            return kPrimaryColor.withOpacity(.32);
+          if (states.contains(MaterialState.selected)) {
+            return kPrimaryColor;
           }
-          return kPrimaryColor;
+          return kWhiteColor;
         },
       ),
     ),

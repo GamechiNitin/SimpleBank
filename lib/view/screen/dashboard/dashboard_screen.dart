@@ -1,5 +1,6 @@
 import 'package:simple_bank/utils/import.dart';
 import 'package:simple_bank/view/screen/more/feedback_screen.dart';
+import 'package:simple_bank/view/widget/user_card_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -18,77 +19,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(kBorderRadius),
-                    child: Image.network(
-                      "https://picsum.photos/200/300",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              text: "UCC : ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(fontWeight: FontWeight.w500),
-                              children: [
-                                TextSpan(
-                                  text: "78***65",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(fontWeight: FontWeight.w500),
-                                )
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Icon(
-                            Icons.verified_user_outlined,
-                            size: kSmallIconSize,
-                            color: kErrorColor,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        "Nitin Gamechi",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      Text(
-                        "ni*********i@gmail.com",
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
-                  ),
-                ),
-                Icon(
-                  Icons.keyboard_arrow_right_sharp,
-                  size: kIconSize,
-                  color: Theme.of(context)
-                      .bottomNavigationBarTheme
-                      .selectedIconTheme
-                      ?.color,
-                ),
-              ],
-            ),
+          UserCardWidget(
+            imageUrl: 'https://picsum.photos/200/300',
+            email: 'ni*********i@gmail.com',
+            ucc: '78***65',
+            userName: 'NitinGamechi',
+            onTap: () {
+              GoRouter.of(context).pushNamed(RouteEnum.updateProfile.name);
+            },
           ),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 10),
